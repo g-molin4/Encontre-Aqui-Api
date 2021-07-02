@@ -3,18 +3,21 @@ $req=file_get_contents("php://input");
 $user=json_decode($req);
 $response= new \stdClass;
 try{
-    if(empty($user->email) || empty($user->password))
-        throw new Exception('Requisição nula.');
+    if(!isset($user->email) || !isset($user->password))
+        throw new Exception('');
     if($user->email=="gabriel.mw3.gm@gmail.com" && $user->password=="123456"){
         $response->validaLogin=true;
+        $response->email=$user->email;
+        $response->password=$user->password;
     }
     else{
-        
         $response->validaLogin=false;
+        $response->erro="Login ou senha inválidos";
     }
 }
 catch(Exception $e){
-    echo $e->getMessage();
+    $response->validaLogin=false;
+    $response->erro="Ocorreu um erro inesperado";
 }
 
 
