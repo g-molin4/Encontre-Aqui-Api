@@ -9,15 +9,16 @@ try{
         $response->validaLogin=true;
         $response->email=$user->email;
         $response->password=$user->password;
+        $response->erro=[];
     }
     else{
         $response->validaLogin=false;
-        $response->erro="Login ou senha inválidos";
+        $response->erro=["Login ou senha inválidos"];
     }
 }
 catch(Exception $e){
     $response->validaLogin=false;
-    $response->erro="Ocorreu um erro inesperado";
+    $response->erro=["Ocorreu um erro inesperado"];
 }
 
 
