@@ -9,6 +9,8 @@ try{
         $response->validaLogin=true;
         $response->email=$user->email;
         $response->password=$user->password;
+        $response->name="Gabriel";
+        $response->lastName="Molina";
         $response->erro=[];
     }
     else{
