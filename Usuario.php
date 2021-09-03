@@ -72,7 +72,7 @@ class Usuario{
     
     function pegaObjetos(){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT * FROM objetoEncontrado where userId=:userId");
+        $stmt=$conn->prepare("SELECT * FROM objetoEncontrado where userEncontrouId=:userId");
         $stmt->execute([ 
             "userId"=>$this->_userId
         ]);
