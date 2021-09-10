@@ -6,6 +6,7 @@ class Objeto{
     private $_dataEncontrado;
     private $_localEntId;
     private $_userEncontrouId;
+    private $_imagens;
 
     //getters
     public function getObjetoId(){
@@ -22,6 +23,9 @@ class Objeto{
     }
     public function getUserEncontrouId(){
         return $this->_userEncontrouId;
+    }
+    public function getImagens(){
+        return $this->_imagens;
     }
 
     //setters
@@ -64,7 +68,59 @@ class Objeto{
             "userEntId"=>$inputUserEncontrouId
         ]);
     }
-    
+    public function pegaImagens($inputObjetoId){
+        $conn=connectionFactory();
+        $stmt=$conn->prepare("SELECT * from imagensObjeto where objetoId=:objetoId and visivel=1");
+        $stmt->execute([
+            "objetoId"=>$inputObjetoId
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function removeImagem($inputIdImagem){
+        $conn=connectionFactory();
+        $stmt=$conn->prepare("UPDATE imagensObjeto set visivel=0 where imagemId=:imagemId");
+        $stmt->execute([
+            "imagemId"=>$inputIdImagem
+        ]);
+    }
+    public static function insereImagem($imagem,$inputObjetoId,$inputUserEncontrouId){
+        $ext=$imagem["type"];
+        $extensao=explode("/",$ext)[1];
+        $temporario=$imagem["tmp_name"];
+        $diretorioOrigem="C:\\xampp\\htdocs\\EncontreAqui\\EncontreAquiAnexos\\";
+        if($ext =="image/jpeg" || $ext=="image/png" || $ext=="image/jpg"){
+            $conn=connectionFactory();
+            $stmt=$conn->prepare("SELECT count(*) as total from imagensObjeto where objetoId=:objetoId and visivel=1");
+            $stmt->execute([
+                "objetoId"=>$inputObjetoId
+            ]);
+            $row=$stmt->fetch(PDO::FETCH_ASSOC);
 
+            $nomeArquivo=md5("{$row["total"]}_$inputObjetoId").".$extensao";
+
+            if(!is_dir($diretorioOrigem.md5("$inputUserEncontrouId-$inputObjetoId")) && $row["total"]==0){
+                mkdir($diretorioOrigem.md5("$inputUserEncontrouId-$inputObjetoId"));
+            }
+            $diretorio=md5("$inputUserEncontrouId-$inputObjetoId");
+            $dirFinal=$diretorioOrigem.md5("$inputUserEncontrouId-$inputObjetoId")."\\$nomeArquivo";
+            if(move_uploaded_file($temporario,$dirFinal)){
+                $insert= $conn->prepare("INSERT into imagensobjeto (diretorio,nome,objetoId) VALUES (?,?,?)");
+                // die("$diretorio $nomeArquivo $inputObjetoId");
+                $insert->execute([
+                    $diretorio,
+                    $nomeArquivo,
+                    $inputObjetoId
+                ]);
+                return "Arquivo Anexado";
+            }
+            else{
+                return "erro ao salvar o arquivo";
+            }
+
+        }
+        else{
+            return "Tipo de arquivo não aceito";
+        }
+    }
 }
 ?>
