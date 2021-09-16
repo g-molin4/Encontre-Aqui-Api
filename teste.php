@@ -10,7 +10,7 @@
 <body>
 <?php
 
-include "Objeto.php";
+include "Classes\\Objeto.php";
 if($_FILES){
     Objeto::insereImagem($_FILES["arquivo"],3,1);
 }

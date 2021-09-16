@@ -1,7 +1,7 @@
 <?php
 
 
-include_once "conn.php";
+include_once "../conn.php";
 class Usuario{
     private $_userId;
     private $_login;
@@ -78,6 +78,28 @@ class Usuario{
         ]);
         $objetos=$stmt->fetchAll(PDO::FETCH_ASSOC);
         $this->_objetos=$objetos;
+    }
+    function alterarSenha($inputUserId,$inputSenhaNova){ //IMPORTANTE!!! Falta criar metodo de envio de email para alteração de senha
+        
+        $conn=connectionFactory();
+        $stmt=$conn->prepare("UPDATE user SET password=:password WHERE id=:userId");
+        $stmt->execute([
+            "password"=>$inputSenhaNova,
+            "userId"=>$inputUserId
+        ]);
+    }
+    public static function verificaCpfRepetido($inputCpf){
+        $conn=connectionFactory();
+        $stmt=$conn->prepare("SELECT * FROM user where cpf=:cpf");
+        $stmt->execute([
+            "cpf"=>$inputCpf
+        ]);
+        $countRows=count($stmt->fetchAll());
+
+        if($countRows>0)
+            return true; //é repetido
+        else
+            return false; //não é repetido
     }
 }
 
