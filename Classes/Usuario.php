@@ -1,7 +1,8 @@
 <?php
 
-
+include_once "../funcoes.php";
 include_once "../conn.php";
+
 class Usuario{
     private $_userId;
     private $_login;
@@ -100,6 +101,29 @@ class Usuario{
             return true; //é repetido
         else
             return false; //não é repetido
+    }
+    public static function gerarTokenSenha($inputLogin){
+        $conn=connectionFactory();
+        $stmt=$conn->prepare("SELECT id FROM user WHERE login=:login");
+        $stmt->execute([
+            "login"=>$inputLogin
+        ]);
+        $row=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(count($row)>0){
+            $token=generateRandomString();
+            $stmt=$conn->prepare("UPDATE user SET token=:token,expira_token=DATEADD(now(), INTERVAL 3 HOUR) where id=:id");
+            $stmt->execute([
+                "token"=>$token,
+                "id"=>$row["id"]
+            ]);
+            
+        }
+        else{
+            return false;
+        }
+
+
     }
 }
 
