@@ -117,13 +117,24 @@ class Usuario{
                 "token"=>$token,
                 "id"=>$row["id"]
             ]);
-            
+            return $token;
         }
         else{
             return false;
         }
-
-
+    }
+    public static function validaTokenSenha($token,$inputUserId){
+        $conn= connectionFactory();
+        $stmt= $conn->prepare("SELECT token FROM user WHERE token=:token and id=:userId and expira_token<=now()");
+        $stmt->execute([
+            "token"=>$token,
+            "userId"=>$inputUserId
+        ]);
+        $row= $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if(count($row)==0)
+            return false;
+        else
+            return true;
     }
 }
 
