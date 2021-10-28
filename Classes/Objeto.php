@@ -43,7 +43,7 @@ class Objeto{
     }
     public function cadastraObjeto($inputTipoObjeto,$inputUserEncontrouId,$inputLocalEntId){
         $conn= connectionFactory();
-        $stmt=$conn->prepare("INSERT INTO objetoencontrado(tipoObjeto,userEncontrouId,localEntId) values (:tipoObjeto,:userEncontrouId,:localEntId)");
+        $stmt=$conn->prepare("INSERT INTO objeto(tipoObjeto,userEncontrouId,localEntId) values (:tipoObjeto,:userEncontrouId,:localEntId)");
         $stmt->execute([
             "tipoObjeto"=>$inputTipoObjeto,
             "userEncontrouId"=>$inputUserEncontrouId,
@@ -52,7 +52,7 @@ class Objeto{
     }
     public static function pegaObjeto($inputObjetoId){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT * FROM objetoEncontrado where id=:objetoId");
+        $stmt=$conn->prepare("SELECT * FROM objeto where id=:objetoId");
         $stmt->execute([ 
             "objetoId"=>$inputObjetoId
         ]);
@@ -60,7 +60,7 @@ class Objeto{
     }
     public function alteraObjeto($inputId,$inputTipoObjeto,$inputLocalEntId,$inputUserEncontrouId){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("UPDATE objetoEncontrado set tipoObjeto=:tipoObjeto,localEntId=:localEntId,userEncontrouId=:userEncontrouId where id=:id");
+        $stmt=$conn->prepare("UPDATE objeto set tipoObjeto=:tipoObjeto,localEntId=:localEntId,userEncontrouId=:userEncontrouId where id=:id");
         $stmt->execute([
             "id"=>$inputId,
             "tipoObjeto"=>$inputTipoObjeto,
@@ -70,7 +70,7 @@ class Objeto{
     }
     public function pegaImagens($inputObjetoId){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT * from imagensObjeto where objetoId=:objetoId and visivel=1");
+        $stmt=$conn->prepare("SELECT * from imagemobjeto where objetoId=:objetoId and visivel=1");
         $stmt->execute([
             "objetoId"=>$inputObjetoId
         ]);
@@ -78,7 +78,7 @@ class Objeto{
     }
     public function removeImagem($inputIdImagem){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("UPDATE imagensObjeto set visivel=0 where imagemId=:imagemId");
+        $stmt=$conn->prepare("UPDATE imagemobjeto set visivel=0 where imagemId=:imagemId");
         $stmt->execute([
             "imagemId"=>$inputIdImagem
         ]);
@@ -90,7 +90,7 @@ class Objeto{
         $diretorioOrigem="C:\\xampp\\htdocs\\EncontreAqui\\EncontreAquiAnexos\\";
         if($ext =="image/jpeg" || $ext=="image/png" || $ext=="image/jpg"){
             $conn=connectionFactory();
-            $stmt=$conn->prepare("SELECT count(*) as total from imagensObjeto where objetoId=:objetoId and visivel=1");
+            $stmt=$conn->prepare("SELECT count(*) as total from imagemobjeto where objetoId=:objetoId and visivel=1");
             $stmt->execute([
                 "objetoId"=>$inputObjetoId
             ]);
@@ -104,7 +104,7 @@ class Objeto{
             $diretorio=md5("$inputUserEncontrouId-$inputObjetoId");
             $dirFinal=$diretorioOrigem.md5("$inputUserEncontrouId-$inputObjetoId")."\\$nomeArquivo";
             if(move_uploaded_file($temporario,$dirFinal)){
-                $insert= $conn->prepare("INSERT into imagensobjeto (diretorio,nome,objetoId) VALUES (?,?,?)");
+                $insert= $conn->prepare("INSERT into imagemobjeto (diretorio,nome,objetoId) VALUES (?,?,?)");
                 // die("$diretorio $nomeArquivo $inputObjetoId");
                 $insert->execute([
                     $diretorio,

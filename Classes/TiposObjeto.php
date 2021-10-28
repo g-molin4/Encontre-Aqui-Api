@@ -1,31 +1,40 @@
 <?php
 include_once "../conn.php";
 class TiposObjeto {
-    public function cadastraTipoObjeto($inputTipoObjeto,$inputUserEncontrouId,$inputLocalEntId){
+    private $_idObjeto;
+    private $_tipo;
+
+    public function getTipoObjetoId(){
+        return $this->_idObjeto;
+    }
+    public function getTipo(){
+        return $this->_tipo;
+    }
+    public function setTipo($novoTipo){
+        $this->_tipo=$novoTipo;
+    }
+    
+    public function cadastraTipoObjeto($inputTipoObjeto){
         $conn= connectionFactory();
-        $stmt=$conn->prepare("INSERT INTO objetoencontrado(tipoObjeto,userEncontrouId,localEntId) values (:tipoObjeto,:userEncontrouId,:localEntId)");
+        $stmt=$conn->prepare("INSERT INTO tipoobjeto(tipoObjeto) values (:tipoObjeto)");
         $stmt->execute([
-            "tipoObjeto"=>$inputTipoObjeto,
-            "userEncontrouId"=>$inputUserEncontrouId,
-            "localEntId"=>$inputLocalEntId
+            "tipoObjeto"=>$inputTipoObjeto
         ]);
     }
-    public static function pegaTipoObjeto($inputObjetoId){
+    public static function pegaTipoObjeto($tipoObjetoId){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT * FROM objetoEncontrado where id=:objetoId");
+        $stmt=$conn->prepare("SELECT * FROM tipoobjeto where id=:tipoObjetoId");
         $stmt->execute([ 
-            "objetoId"=>$inputObjetoId
+            "tipoObjetoId"=>$tipoObjetoId
         ]);
         return new Objeto($stmt->fetch(PDO::FETCH_ASSOC));
     }
-    public function alteraTipoObjeto($inputId,$inputTipoObjeto,$inputLocalEntId,$inputUserEncontrouId){
+    public function alteraTipoObjeto($inputId,$inputTipoObjeto){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("UPDATE objetoEncontrado set tipoObjeto=:tipoObjeto,localEntId=:localEntId,userEncontrouId=:userEncontrouId where id=:id");
+        $stmt=$conn->prepare("UPDATE tipoobjeto set tipoObjeto=:tipoObjeto where id=:id");
         $stmt->execute([
             "id"=>$inputId,
             "tipoObjeto"=>$inputTipoObjeto,
-            "localEntId"=>$inputLocalEntId,
-            "userEntId"=>$inputUserEncontrouId
         ]);
     }
 }

@@ -7,7 +7,6 @@ class Usuario{
     private $_userId;
     private $_login;
     private $_password;
-    private $_objetos;
 
     //getters
     public function getUserId(){
@@ -20,28 +19,26 @@ class Usuario{
         return $this->password;
     }
     
-    function getUser(){ // Será usado para formar a variável de sessão do usuário
-        return $this;
-    }
+
 
     //setters
     public function setLogin($novoLogin){
         $this->_login=$novoLogin;
     }
     public function setPassword($novaSenha){
-        $this->_password=$novaSenha;
+        $this->_senha=$novaSenha;
     }
 
 
     public function __construct($arrayUser){
         $this->_userId=$arrayUser["id"];
         $this->_login=$arrayUser["login"];
-        $this->_password=$arrayUser["password"];
+        $this->_senha=$arrayUser["password"];
     }
     public static function validaLogin($inputLogin,$inputPassword){
         //fazer consulta no banco para validar login
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT * FROM user WHERE login=:login and password=:password");
+        $stmt=$conn->prepare("SELECT * FROM usuario WHERE login=:login and senha=:password");
         $stmt->execute(array(
             'login'=>$inputLogin,
             "password"=>$inputPassword
@@ -55,7 +52,7 @@ class Usuario{
     }
     public static function cadastraUser($inputLogin,$inputPassword){
         $conn=connectionFactory();
-        $stmt= $conn->prepare("INSERT INTO user (login,password) values(:login,:password)");
+        $stmt= $conn->prepare("INSERT INTO usuario (login,password) values(:login,:password)");
         $stmt->execute([
             "login"=>$inputLogin,
             "password"=>$inputPassword
@@ -63,7 +60,7 @@ class Usuario{
     }
     public static function alteraUser($inputId,$inputLogin,$inputPassword){
         $conn=connectionFactory();
-        $stmt= $conn->prepare("UPDATE user SET login=:login,password=:password WHERE id=:userId");
+        $stmt= $conn->prepare("UPDATE usuario SET login=:login,senha=:password WHERE id=:userId");
         $stmt->execute([
             "login"=>$inputLogin,
             "password"=>$inputPassword,
@@ -83,7 +80,7 @@ class Usuario{
     function alterarSenha($inputUserId,$inputSenhaNova){ //IMPORTANTE!!! Falta criar metodo de envio de email para alteração de senha
         
         $conn=connectionFactory();
-        $stmt=$conn->prepare("UPDATE user SET password=:password WHERE id=:userId");
+        $stmt=$conn->prepare("UPDATE usuario SET senha=:password WHERE id=:userId");
         $stmt->execute([
             "password"=>$inputSenhaNova,
             "userId"=>$inputUserId
@@ -91,7 +88,7 @@ class Usuario{
     }
     public static function verificaCpfRepetido($inputCpf){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT * FROM user where cpf=:cpf");
+        $stmt=$conn->prepare("SELECT * FROM usuario where cpf=:cpf");
         $stmt->execute([
             "cpf"=>$inputCpf
         ]);
@@ -104,7 +101,7 @@ class Usuario{
     }
     public static function gerarTokenSenha($inputLogin){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT id FROM user WHERE login=:login");
+        $stmt=$conn->prepare("SELECT id FROM usuario WHERE login=:login");
         $stmt->execute([
             "login"=>$inputLogin
         ]);
@@ -112,7 +109,7 @@ class Usuario{
 
         if(count($row)>0){
             $token=generateRandomString();
-            $stmt=$conn->prepare("UPDATE user SET token=:token,expira_token=DATEADD(now(), INTERVAL 3 HOUR) where id=:id");
+            $stmt=$conn->prepare("UPDATE usuario SET token=:token,expira_token=DATEADD(now(), INTERVAL 3 HOUR) where id=:id");
             $stmt->execute([
                 "token"=>$token,
                 "id"=>$row["id"]
@@ -125,7 +122,7 @@ class Usuario{
     }
     public static function validaTokenSenha($token,$inputUserId){
         $conn= connectionFactory();
-        $stmt= $conn->prepare("SELECT token FROM user WHERE token=:token and id=:userId and expira_token<=now()");
+        $stmt= $conn->prepare("SELECT token FROM usuario WHERE token=:token and id=:userId and expira_token<=now()");
         $stmt->execute([
             "token"=>$token,
             "userId"=>$inputUserId
