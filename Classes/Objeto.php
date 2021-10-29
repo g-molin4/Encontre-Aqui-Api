@@ -2,35 +2,85 @@
 include_once "conn.php";
 class Objeto{
     private $_objetoId;
-    private $_tipoObjeto;
     private $_dataEncontrado;
-    private $_localEntId;
     private $_userEncontrouId;
-    private $_imagens;
+    private $_orgaoId;
+    private $_descricao;
+    private $_tipoObjetoId;
+    private $_userPerdeuId;
+    private $_status;
+    private $_subStatus;
+    private $_dataAlteracao;
+    private $_admId;
 
     //getters
     public function getObjetoId(){
         return $this->_objetoId;
     }
-    public function getTipoObjeto(){
-        return $this->_tipoObjeto;
-    }
     public function getDataEncontrado(){
         return $this->_dataEncontrado;
     }
-    public function getLocalEntId(){
-        return $this->_localEntId;
-    }
-    public function getUserEncontrouId(){
+    public function getEncontrouId(){
         return $this->_userEncontrouId;
     }
-    public function getImagens(){
-        return $this->_imagens;
+    public function getOrgaoId(){
+        return $this->_orgaoId;
+    }
+    public function getDescricao(){
+        return $this->_descricao;
+    }
+    public function getTipoObjetoId(){
+        return $this->_tipoObjetoId;
+    }
+    public function getUserPerdeuId(){
+        return $this->_userPerdeuId;
+    }
+    public function getStatus(){
+        return $this->_status;
+    }
+    public function getSubStatus(){
+        return $this->_subStatus;
+    }
+    public function getAlteracao(){
+        return $this->_dataAlteracao;
+    }
+    public function getAdmId(){
+        return $this->_admId;
     }
 
     //setters
-    public function setTipoObjeto($novoTipoObjeto){
-        $this->_tipoObjeto=$novoTipoObjeto;
+    public function setDataEncontrado($value){
+        $this->_dataEncontrado=$value;
+    }
+    public function setEncontrouId($value){
+        $this->_encontrouId=$value;
+    }
+    public function setUserEncontrouId($value){
+        $this->_userEncontrouId=$value;
+    }
+    public function setOrgaoId($value){
+        $this->_orgaoId=$value;
+    }
+    public function setDescricao($value){
+        $this->_descricao=$value;
+    }
+    public function setTipoObjetoId($value){
+        $this->_tipoObjetoId=$value;
+    }
+    public function setUserPerdeuId($value){
+        $this->_userPerdeuId=$value;
+    }
+    public function setStatus($value){
+        $this->_status=$value;
+    }
+    public function setSubStatus($value){
+        $this->_subStatus=$value;
+    }
+    public function setAlteracao($value){
+        $this->_dataAlteracao=$value;
+    }
+    public function setAdmId($value){
+        $this->_admId=$value;
     }
 
 

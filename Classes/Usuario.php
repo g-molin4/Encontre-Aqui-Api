@@ -5,43 +5,94 @@ include_once "../conn.php";
 
 class Usuario{
     private $_userId;
-    private $_login;
-    private $_password;
+    private $_cpf;
+    private $_senha;
+    private $_email;
+    private $_token;
+    private $_cep;
+    private $_bairro;
+    private $_enderecoNumero;
+    private $_rua;
+    private $_telefone;
+    private $_master;
+    
 
     //getters
     public function getUserId(){
         return $this->_userId;
     }
-    public function getLogin(){
-        return $this->login;
+    public function getCpf(){
+        return $this->_cpf;
     }
-    public function getPassword(){
-        return $this->password;
+    public function getSenha(){
+        return $this->_senha;
     }
-    
-
+    public function getEmail(){
+        return $this->_email;
+    }
+    public function getToken(){
+        return $this->_token;
+    }
+    public function getCep(){
+        return $this->_cep;
+    }
+    public function getBairro(){
+        return $this->_bairro;
+    }
+    public function getEnderecoNumero(){
+        return $this->_enderecoNumero;
+    }
+    public function getRua(){
+        return $this->_rua;
+    }
+    public function getTelefone(){
+        return $this->_telefone;
+    }
+    public function getMaster(){
+        return $this->_master;
+    }
 
     //setters
-    public function setLogin($novoLogin){
-        $this->_login=$novoLogin;
+    public function setCpf($novoCpf){
+        $this->_senha=$novoCpf;
     }
-    public function setPassword($novaSenha){
+    public function setSenha($novaSenha){
         $this->_senha=$novaSenha;
     }
-
-
-    public function __construct($arrayUser){
-        $this->_userId=$arrayUser["id"];
-        $this->_login=$arrayUser["login"];
-        $this->_senha=$arrayUser["password"];
+    public function setEmail($novoEmail){
+        $this->_email=$novoEmail;
     }
-    public static function validaLogin($inputLogin,$inputPassword){
+    public function setCep($novoCep){
+        $this->_senha=$novoCep;
+    }
+    public function setBairro($novoBairro){
+        $this->_bairro=$novoBairro;
+    }
+    public function setEnderecoNum($novoEnderecoNum){
+        $this->_enderecoNumero=$novoEnderecoNum;
+    }
+    public function setTelefone($novoTel){
+        $this->_telefone=$novoTel;
+    }
+    public function setMaster($novoMaster){
+        $this->_telefone=$novoMaster;
+    }
+
+
+    // public function __construct($arrayUser){
+    //     $this->_userId=$arrayUser["id"];
+    //     $this->_login=$arrayUser["login"];
+    //     $this->_senha=$arrayUser["password"];
+    // }
+
+
+    public static function validaLogin($email,$senha){
         //fazer consulta no banco para validar login
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT * FROM usuario WHERE login=:login and senha=:password");
+        $stmt=$conn->prepare("SELECT * FROM usuario WHERE email=:email and senha=:password");
         $stmt->execute(array(
-            'login'=>$inputLogin,
-            "password"=>$inputPassword
+            'email'=>$email,
+            "password"=>$senha
         ));
         if($stmt->rowCount()>0){
             return new Usuario($stmt->fetch(PDO::FETCH_ASSOC));
@@ -50,40 +101,44 @@ class Usuario{
             echo "usuário ou senha inválidos";
         }
     }
-    public static function cadastraUser($inputLogin,$inputPassword){
+    public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$rua,$master){
         $conn=connectionFactory();
-        $stmt= $conn->prepare("INSERT INTO usuario (login,password) values(:login,:password)");
+        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cpf,cep,bairro,enderecoNumero,telefone,rua,master) values(:email,:senha,:cpf,:cep,:bairro,:enderecoNumero,:telefone,:rua,:master)");
         $stmt->execute([
-            "login"=>$inputLogin,
-            "password"=>$inputPassword
+            "email"=>$email,
+            "senha"=>$senha,
+            "cpf"=>$cpf,
+            "cep"=>$cep,
+            "bairro"=>$bairro,
+            "enderecoNumero"=>$enderecoNumero,
+            "telefone"=>$telefone,
+            "rua"=>$rua,
+            "master"=>$master,
         ]);
     }
-    public static function alteraUser($inputId,$inputLogin,$inputPassword){
+    public static function alteraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$rua,$master){
         $conn=connectionFactory();
-        $stmt= $conn->prepare("UPDATE usuario SET login=:login,senha=:password WHERE id=:userId");
+        $stmt= $conn->prepare("UPDATE usuario SET email=:email,senha=:senha,cpf=:cpf,cep=:cep,bairro=:bairro,enderecoNumero=:enderecoNumero,telefone=:telefone,rua=:rua,master=:master WHERE id=:userId");
         $stmt->execute([
-            "login"=>$inputLogin,
-            "password"=>$inputPassword,
-            "userId"=>$inputId
+            "email"=>$email,
+            "senha"=>$senha,
+            "cpf"=>$cpf,
+            "cep"=>$cep,
+            "bairro"=>$bairro,
+            "enderecoNumero"=>$enderecoNumero,
+            "telefone"=>$telefone,
+            "rua"=>$rua,
+            "master"=>$master,
         ]);
     }
     
-    function pegaObjetos(){
-        $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT * FROM objetoEncontrado where userEncontrouId=:userId");
-        $stmt->execute([ 
-            "userId"=>$this->_userId
-        ]);
-        $objetos=$stmt->fetchAll(PDO::FETCH_ASSOC);
-        $this->_objetos=$objetos;
-    }
-    function alterarSenha($inputUserId,$inputSenhaNova){ //IMPORTANTE!!! Falta criar metodo de envio de email para alteração de senha
+    function alterarSenha($userId,$senhaNova){ //IMPORTANTE!!! Falta criar metodo de envio de email para alteração de senha
         
         $conn=connectionFactory();
-        $stmt=$conn->prepare("UPDATE usuario SET senha=:password WHERE id=:userId");
+        $stmt=$conn->prepare("UPDATE usuario SET senha=:senha WHERE id=:userId");
         $stmt->execute([
-            "password"=>$inputSenhaNova,
-            "userId"=>$inputUserId
+            "senha"=>$senhaNova,
+            "userId"=>$userId
         ]);
     }
     public static function verificaCpfRepetido($inputCpf){
@@ -99,17 +154,17 @@ class Usuario{
         else
             return false; //não é repetido
     }
-    public static function gerarTokenSenha($inputLogin){
+    public static function gerarTokenSenha($email){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("SELECT id FROM usuario WHERE login=:login");
+        $stmt=$conn->prepare("SELECT id FROM usuario WHERE email=:email");
         $stmt->execute([
-            "login"=>$inputLogin
+            "email"=>$email
         ]);
         $row=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if(count($row)>0){
             $token=generateRandomString();
-            $stmt=$conn->prepare("UPDATE usuario SET token=:token,expira_token=DATEADD(now(), INTERVAL 3 HOUR) where id=:id");
+            $stmt=$conn->prepare("UPDATE usuario SET token=:token,expiraToken=DATEADD(now(), INTERVAL 3 HOUR) where id=:id");
             $stmt->execute([
                 "token"=>$token,
                 "id"=>$row["id"]
@@ -120,12 +175,12 @@ class Usuario{
             return false;
         }
     }
-    public static function validaTokenSenha($token,$inputUserId){
+    public static function validaTokenSenha($token,$userId){
         $conn= connectionFactory();
-        $stmt= $conn->prepare("SELECT token FROM usuario WHERE token=:token and id=:userId and expira_token<=now()");
+        $stmt= $conn->prepare("SELECT token FROM usuario WHERE token=:token and id=:userId and expiraToken<=now()");
         $stmt->execute([
             "token"=>$token,
-            "userId"=>$inputUserId
+            "userId"=>$userId
         ]);
         $row= $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(count($row)==0)
