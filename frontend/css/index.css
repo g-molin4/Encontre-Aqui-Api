@@ -1,0 +1,135 @@
+/* FONTS */
+/* @font-face {
+	font-family: 'Roboto Thin';
+	src: url('fonts/Roboto-Thin.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Green Beans';
+	src: url('fonts/Green Beans_PersonalUseOnly.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+} */
+@font-face {
+	font-family: 'Grota Sans Bold';
+	src: url(../fonts/Grota\ Sans\ Bold.otf);
+}
+
+/* Body */
+body {
+	background: #000;
+	margin: 0;
+	font-family: 'Grota Sans Bold', sans-serif;
+}
+
+/* Header */
+header {
+	background: #fff;
+	border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+	color: #000;
+	padding-left: 65px;
+	padding-right: 65px;
+}
+header a {
+	color: #000 !important;
+}
+header a:hover {
+	text-decoration: none;
+}
+
+/* Main */
+main {
+	background: #000;
+	color: #fff;
+	padding-left: 90px;
+}
+
+/* Landing Page */
+main#landingPage {
+    padding-top: 2.5rem;
+    padding-left: 4rem;
+}
+.titulo_principal {
+	font-size: 50px;
+	line-height: 64px;
+}
+.titulo_complementar {
+	line-height: 25px;
+}
+
+/* Required Inputs  "*" */
+.campo_obrigatorio::after {
+	content: ' *';
+	color: red;
+}
+
+/* Login */
+.card {
+	color: #000;
+}
+#form-login input {
+	border: 3px solid #000;
+}
+.btn_cad .btn_login {
+	background-color: #000;
+	color: #fff;
+}
+
+/* Button Cad Form */
+.btn_cad {
+	display: flex;
+	justify-content: center;
+}
+
+/* Default Button */
+.botao {
+	background: #fff;
+	color: #000;
+    font-size: 1.25rem;
+    line-height: 1.5;
+	padding: 0.6rem 1.6rem;
+	border: none;
+	border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.botao a {
+	color: #000;
+	text-decoration: none;
+}
+
+/* Custom IMG - Landing Page*/
+.img_entrega_objeto {
+	width: 75%;
+	padding-left: 3rem;
+	border-radius: 15px;
+}
+
+/* Custom HR  - Landing Page*/
+hr {
+	background: #fff;
+    width: 92%;
+}
+
+/* Icone Contraste - Acessibilidade */
+.icon_contraste img {
+    width: 15px;
+    height: 15px;
+}
+.icon_contraste:active {
+	background: #fff;
+}
+
+/* Footer */
+footer {
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	background: #fff;
+}
+footer .version{
+	font-size: 10px;
+}
+
+
