@@ -1,10 +1,10 @@
 <?php
-$pagina=$_GET["pagina"];
+$pagina=$_GET["pagina"]??"";
 
-if($pagina=="formulario" || !$pagina)
-    include_once "formLogin.php";
-else if ($pagina=="objetos")
-    include_once "teste.php";
+if(!$pagina || $pagina=="principal")
+    include_once "principal.php";
+else if($pagina=="login")
+    include_once "login.php";
 else if ($pagina=="email")
     include_once "mail/envioEmail.php";
 else    

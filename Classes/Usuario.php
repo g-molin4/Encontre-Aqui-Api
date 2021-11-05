@@ -1,7 +1,7 @@
 <?php
 
-include_once "../funcoes.php";
-include_once "../conn.php";
+include_once "funcoes.php";
+include_once "conn.php";
 
 class Usuario{
     private $_userId;
@@ -95,10 +95,11 @@ class Usuario{
             "password"=>$senha
         ));
         if($stmt->rowCount()>0){
-            return new Usuario($stmt->fetch(PDO::FETCH_ASSOC));
+            // return new Usuario($stmt->fetch(PDO::FETCH_ASSOC));
+            return true;
         }
         else{
-            echo "usuário ou senha inválidos";
+            echo false;
         }
     }
     public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$rua,$master){

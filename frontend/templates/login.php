@@ -1,3 +1,6 @@
+<?php
+include "../../Classes/Usuario.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -15,7 +18,11 @@
 
 		<title>Login</title>
 	</head>
-
+    <?php
+    if($_POST){
+        echo "<script> alert('".Usuario::validaLogin($_POST["email"],$_POST["senha"])."')</script>";
+    }
+    ?>
 	<body>
 		<header class="container-fluid navPage">
 			<!-- Navbar content -->
@@ -49,14 +56,14 @@
                 <div class="card mt-4 mb-1" style="width: 24rem;">
                     <div class="card-body">
                         <h1 class="text-center mt-2 mb-5">Login</h1>
-                        <form id="form-login" class="form-login">
+                        <form id="form-login" class="form-login" action="login.php" method="POST">
                             <div class="col-lg-12 col-md-12 mb-4 login_cad">
                                 <label for="login" class="form-label campo_obrigatorio">Nome de Usuário</label>
                                 <input
-                                    type="text"
+                                    type="email"
                                     class="form-control"
-                                    id="login_usuario"
-                                    name="loginUsuario"
+                                    id="email"
+                                    name="email"
                                     placeholder="Digite o seu nome de usuário"
                                 />
                             </div>
