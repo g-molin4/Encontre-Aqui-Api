@@ -46,7 +46,7 @@
                   </div>
 
 				<div class="links">
-                    <a class="mr-3" href="login.html">Login</a>
+                    <a class="mr-3" href="login">Login</a>
 					<a class="mr-3" href="#">Cadastre-se</a>
                     <a class="mr-3" href="#">Saiba Mais</a>
 					<a class="mr-3" href="#">Fale Conosco</a>
