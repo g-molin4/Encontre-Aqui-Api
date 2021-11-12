@@ -51,7 +51,7 @@ include "Classes/Usuario.php";
 
 				<div class="links">
                     <a class="mr-3" href="#">Login</a>
-					<a class="mr-3" href="#">Cadastre-se</a>
+					<a class="mr-3" href="cadastro">Cadastre-se</a>
                     <a class="mr-3" href="#">Saiba Mais</a>
 					<a class="mr-3" href="#">Fale Conosco</a>
 				</div>

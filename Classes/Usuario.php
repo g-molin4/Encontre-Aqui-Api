@@ -24,6 +24,9 @@ class Usuario{
     public function getCpf(){
         return $this->_cpf;
     }
+    public function getNome(){
+        return $this->_nome;
+    }
     public function getSenha(){
         return $this->_senha;
     }
@@ -48,13 +51,13 @@ class Usuario{
     public function getTelefone(){
         return $this->_telefone;
     }
-    public function getMaster(){
-        return $this->_master;
-    }
 
     //setters
     public function setCpf($novoCpf){
         $this->_senha=$novoCpf;
+    }
+    public function setNome($novoNome){
+        $this->_nome=$novoNome;
     }
     public function setSenha($novaSenha){
         $this->_senha=$novaSenha;
@@ -73,9 +76,6 @@ class Usuario{
     }
     public function setTelefone($novoTel){
         $this->_telefone=$novoTel;
-    }
-    public function setMaster($novoMaster){
-        $this->_telefone=$novoMaster;
     }
 
 
@@ -102,9 +102,9 @@ class Usuario{
             echo false;
         }
     }
-    public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$rua,$master){
+    public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$rua,$nome){
         $conn=connectionFactory();
-        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cpf,cep,bairro,enderecoNumero,telefone,rua,master) values(:email,:senha,:cpf,:cep,:bairro,:enderecoNumero,:telefone,:rua,:master)");
+        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cpf,cep,bairro,enderecoNumero,telefone,rua,nome) values(:email,:senha,:cpf,:cep,:bairro,:enderecoNumero,:telefone,:rua,:nome)");
         $stmt->execute([
             "email"=>$email,
             "senha"=>$senha,
@@ -114,7 +114,7 @@ class Usuario{
             "enderecoNumero"=>$enderecoNumero,
             "telefone"=>$telefone,
             "rua"=>$rua,
-            "master"=>$master,
+            "nome"=>$nome,
         ]);
     }
     public static function alteraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$rua,$master){

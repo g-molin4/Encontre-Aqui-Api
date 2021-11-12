@@ -8,7 +8,7 @@ else if($pagina=="login")
 else if ($pagina=="email")
     include_once "mail/envioEmail.php";
 else if ($pagina=="cadastro")
-    include_once "cadastro.php";
+    include_once "cadastro-usuario.php";
 else    
     die("essa página não existe");
 ?>
