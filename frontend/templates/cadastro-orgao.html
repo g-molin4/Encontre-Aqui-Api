@@ -44,17 +44,17 @@
 		</header>
 
 		<main class="container wrapper pt-5"  id="cadUsuario">
-            <h1>Você perdeu seu objeto? Cadastre-se</h1>
-            <form id="form-usuario" class="form-usuario mt-5">
+            <h1>Cadastre seu Órgão</h1>
+            <form id="form-orgao" class="form-orgao mt-5">
                 <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-5 nome_usuario_cad">
-                        <label for="nome_usuario" class="form-label campo_obrigatorio">Nome Completo</label>
+                    <div class="col-lg-4 col-md-12 mb-5 nome_empresa_cad">
+                        <label for="nomeEmpresa" class="form-label campo_obrigatorio">Nome da Empresa</label>
                         <input
                             type="text"
                             class="form-control"
-                            id="nome_usuario"
-                            name="nomeUsuario"
-                            placeholder="Digite o seu nome completo"
+                            id="nomeEmpresa"
+                            name="nomeEmpresa"
+                            placeholder="Digite o nome da empresa"
                             autofocus
                         />
                     </div>
@@ -83,14 +83,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-5 cpf_cad">
-                        <label for="cpf" class="form-label campo_obrigatorio">CPF</label>
+                    <div class="col-lg-4 col-md-12 mb-5 cnpj_cad">
+                        <label for="cnpj" class="form-label campo_obrigatorio">CNPJ</label>
                         <input
                             type="text"
-                            class="cpf form-control"
-                            id="cpf"
-                            name="cpf"
-                            placeholder="000.000.000-00"
+                            class="cnpj form-control"
+                            id="cnpj"
+                            name="cnpj"
+                            placeholder="00.000.000/0000-00"
                         />
                     </div>
 
@@ -107,42 +107,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-5 objeto_cad">
-                        <label for="objeto_encontrado" class="form-label campo_obrigatorio">Qual objeto você encontrou?</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="objeto_encontrado"
-                            name="objetoEncontrado"
-                            placeholder="Digite qual objeto foi encontrado"
-                        />
-                    </div>
-
-                    <div class="col-lg-4 col-md-12 mb-4 local_referencia_cad">
-                        <label for="local_referencia" class="form-label campo_obrigatorio">Local de Referência</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="local_referencia"
-                            name="localReferencia"
-                            placeholder="Digite o local que encontrou o objeto"
-                        />
-                    </div>
-
-                    <div class="col-lg-4 col-md-12 mb-4 foto_objeto_cad">
-                        <label for="foto_objeto" class="form-label campo_obrigatorio">Url da foto do Objeto Encontrado</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="foto_objeto"
-                            name="fotoObjeto"
-                            placeholder="Digite a url da Foto do Objeto encontrado"
-                        />
-                    </div>
-                </div> -->
-
-                <div class="btn_cad form-group mb-5 col-lg-12">
+                <div class="btn_cad form-group mb-5 pb-5 col-lg-12">
                     <button type="submit" class="text-uppercase mr-3 botao">Enviar</button>
                     <button type="reset" class="text-uppercase ml-3 botao">Cancelar</button>
                     <a href="painel-cadastro.html"><button type="button" class="text-uppercase ml-3 botao">Voltar</button></a>

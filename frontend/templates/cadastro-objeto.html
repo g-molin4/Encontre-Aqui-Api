@@ -44,66 +44,47 @@
 		</header>
 
 		<main class="container wrapper pt-5"  id="cadUsuario">
-            <h1>Você perdeu seu objeto? Cadastre-se</h1>
-            <form id="form-usuario" class="form-usuario mt-5">
+            <h1>Cadastre o objeto encontrado</h1>
+            <form id="form-objeto" class="form-objeto mt-5">
                 <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-5 nome_usuario_cad">
-                        <label for="nome_usuario" class="form-label campo_obrigatorio">Nome Completo</label>
+                    <div class="col-lg-4 col-md-12 mb-5 nome_objeto_cad">
+                        <label for="nomeObjeto" class="form-label campo_obrigatorio">Nome do Objeto</label>
                         <input
                             type="text"
                             class="form-control"
-                            id="nome_usuario"
-                            name="nomeUsuario"
-                            placeholder="Digite o seu nome completo"
+                            id="nomeObjeto"
+                            name="nomeObjeto"
+                            placeholder="Digite o nome do objeto encontrado"
                             autofocus
                         />
                     </div>
 
-                    <div class="col-lg-4 col-md-12 mb-5 email_cad">
-                        <label for="email" class="form-label campo_obrigatorio">E-mail</label>
-                        <input
-                            type="email"
-                            class="form-control"
-                            id="email"
-                            name="email"
-                            placeholder="Digite o seu email"
-                        />
+                    <div class="col-lg-4 col-md-12 mb-5 tipo_objeto_cad">
+                        <label for="tipoObjeto" class="form-label campo_obrigatorio">Tipo do Objeto</label>
+                        <select class="form-select form-control" id="tipoObjeto" name="tipoObjeto">
+                            <option value="" selected disabled>Selecione uma das opções</option>
+                            <option value="acessório">Acessório</option>
+                            <option value="documento">Documento</option>
+                            <option value="foneOuvido">Fone de Ouvido</option>
+                            <option value="livro">Livro</option>
+                            <option value="mochila">Mochila</option>
+                            <option value="roupa">Roupa</option>
+                            <option value="outros">Outros</option>
+                        </select>
                     </div>
 
-                    <div class="col-lg-4 col-md-12 mb-5 senha_cad">
-                        <label for="senha" class="form-label campo_obrigatorio">Senha</label>
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="senha"
-                            name="senha"
-                            placeholder="Digite sua senha"
-                        />
+                    <div class="col-lg-4 col-md-12 mb-5 imagemObjeto_cad">
+                        <div class="form-group">
+                            <label for="imagemObjeto" class="campo_obrigatorio">Insira a imagem do objeto</label>
+                            <input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto
+                            imagemObjeto">
+                          </div>
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-5 cpf_cad">
-                        <label for="cpf" class="form-label campo_obrigatorio">CPF</label>
-                        <input
-                            type="text"
-                            class="cpf form-control"
-                            id="cpf"
-                            name="cpf"
-                            placeholder="000.000.000-00"
-                        />
-                    </div>
-
-                    <div class="col-lg-4 col-md-12 mb-5 telefoneCelular_cad">
-                        <label for="telefoneCelular" class="form-label campo_obrigatorio">Telefone Celular</label>
-                        <input
-                            type="text"
-                            class="telefoneCelular form-control"
-                            id="telefoneCelular"
-                            name="telefoneCelular"
-                            maxlength="14"
-                            placeholder="(00) 000000000"
-                        />
+                    <div class="col-lg-12 col-md-12 mb-5 descricao_cad" id="descricao_cad">
+                        <label for="descricao" class="form-label campo_obrigatorio">Descrição</label>
+                        <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4"></textarea>
                     </div>
                 </div>
 
@@ -119,18 +100,9 @@
                         />
                     </div>
 
-                    <div class="col-lg-4 col-md-12 mb-4 local_referencia_cad">
-                        <label for="local_referencia" class="form-label campo_obrigatorio">Local de Referência</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="local_referencia"
-                            name="localReferencia"
-                            placeholder="Digite o local que encontrou o objeto"
-                        />
-                    </div>
 
-                    <div class="col-lg-4 col-md-12 mb-4 foto_objeto_cad">
+
+                    <div class="col-lg-4 col-md-12 mb-5 foto_objeto_cad">
                         <label for="foto_objeto" class="form-label campo_obrigatorio">Url da foto do Objeto Encontrado</label>
                         <input
                             type="text"
@@ -141,8 +113,12 @@
                         />
                     </div>
                 </div> -->
+            </div>
 
-                <div class="btn_cad form-group mb-5 col-lg-12">
+
+                <input type="hidden" id="orgaoId" name="orgaoId"/>
+
+                <div class="btn_cad form-group mb-5 pb-5 col-lg-12">
                     <button type="submit" class="text-uppercase mr-3 botao">Enviar</button>
                     <button type="reset" class="text-uppercase ml-3 botao">Cancelar</button>
                     <a href="painel-cadastro.html"><button type="button" class="text-uppercase ml-3 botao">Voltar</button></a>
