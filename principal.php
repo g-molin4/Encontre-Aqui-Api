@@ -1,16 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<?php
-	// server should keep session data for AT LEAST 1 hour
-	ini_set('session.gc_maxlifetime', 60);
-
-	// each client should remember their session id for EXACTLY 1 hour
-	session_set_cookie_params(60);
-
-	session_start(); // ready to go!
-	echo $_SESSION["email"];
-	
-	?>
 	<head>
 		<!-- Required meta tags -->
 		<meta charset="UTF-8" />
@@ -27,32 +16,10 @@
 		<title>Encontre Aqui</title>
 	</head>
 	<body>
-		<header class="container-fluid navPage">
-			<!-- Navbar content -->
-			<nav class="navbar navbar-dark" id="navbar">
-				<div class="icon d-flex pl-2 pt-2 pb-2">
-					<img class="mr-3" src="img/icone.png" alt="Ícone Encontre Aqui" width="30" height="30" />
-					<a class="d-flex align-items-center" href="index.html">Encontre Aqui</a>
-				</div>
-
-                <div class="dropdown drop-item mr-3">
-                    <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Acessibilidade
-                    </a>
-                  
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item pl-4 icon_contraste" href="#"><img src="img/contrast.svg" alt="icone Contraste" class="mr-2" />Contraste</a>
-                    </div>
-                  </div>
-
-				<div class="links">
-                    <a class="mr-3" href="login">Login</a>
-					<a class="mr-3" href="#">Cadastre-se</a>
-                    <a class="mr-3" href="#">Saiba Mais</a>
-					<a class="mr-3" href="#">Fale Conosco</a>
-				</div>
-			</nav>
-		</header>
+		<?php
+		include "menu.php";
+		echo $_SESSION["usuario"]??"";
+		?>
 
 		<main class="container-fluid"  id="landingPage">
 			<div class="row mt-5 pb-5">

@@ -4,8 +4,9 @@
         // Main Masks
         $('.cep').mask('00000-000');
         $('.cpf').mask('000.000.000-00', { reverse: true });
-        $('.telefone_fixo').mask('(00) 00000000');
-        $('.telefone_celular').mask('(00) 000000000');
+        $('.cnpj').mask('00.000.000/0000-00', { reverse: true });
+        $('.telefone').mask('(00) 00000-0000');
+        // $('.telefoneCelular').mask('(00) 000000000');
 
         // Option Masks
         $('.date').mask('00/00/0000');

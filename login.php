@@ -19,45 +19,23 @@ include "Classes/Usuario.php";
 
 		<title>Login</title>
 	</head>
-    <?php
-    if($_POST){
-        // session_start();
-        if(Usuario::validaLogin($_POST["email"],$_POST["senha"])){
-            session_start();
-            $_SESSION["email"]=$_POST["email"];
-            // echo "<script> alert('".$_SESSION["email"]."')</script>";
+   
+	<body>
+        <?php include "menu.php" ?>
+        <?php
+        if($_POST){
+            // session_start();
+            $row=Usuario::validaLogin($_POST["email"],$_POST["senha"]);
+            if( $row!== false){
+                $_SESSION["usuario"]=json_encode($row);
+                // echo "<script> alert('".$_SESSION["email"]."')</script>";
+                header("Location: principal");
+            }
+        }
+        if($_SESSION){
             header("Location: principal");
         }
-    }
-    ?>
-	<body>
-		<header class="container-fluid navPage">
-			<!-- Navbar content -->
-			<nav class="navbar navbar-dark" id="navbar">
-				<div class="icon d-flex pl-2 pt-2 pb-2">
-					<img class="mr-3" src="img/icone.png" alt="Ícone Encontre Aqui" width="30" height="30" />
-					<a class="d-flex align-items-center" href="index.html">Encontre Aqui</a>
-				</div>
-
-                <div class="dropdown drop-item mr-3">
-                    <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Acessibilidade
-                    </a>
-                  
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item pl-4 icon_contraste" href="#"><img src="img/contrast.svg" alt="icone Contraste" class="mr-2" />Contraste</a>
-                    </div>
-                  </div>
-
-				<div class="links">
-                    <a class="mr-3" href="#">Login</a>
-					<a class="mr-3" href="cadastro">Cadastre-se</a>
-                    <a class="mr-3" href="#">Saiba Mais</a>
-					<a class="mr-3" href="#">Fale Conosco</a>
-				</div>
-			</nav>
-		</header>
-
+        ?>
         <main class="container">
             <div class="row d-flex justify-content-center pt-5 pb-3">
                 <div class="card mt-4 mb-1" style="width: 24rem;">

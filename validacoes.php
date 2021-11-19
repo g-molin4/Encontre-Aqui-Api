@@ -1,6 +1,8 @@
 <?php
-include_once "../Classes/Objeto.php";
-include_once "../Classes/Usuario.php";
+include_once "conn.php";
+include_once "Classes/Objeto.php";
+include_once "Classes/Usuario.php";
+
 
 function validaCPF($cpf) {
  
@@ -32,6 +34,7 @@ function validaCPF($cpf) {
 }
 
 function validaCpfRepetido($inputCpf){
+    $inputCpf=str_replace("-","",str_replace(".","",$inputCpf));
     if(validaCPF($inputCpf)===true){
         if(Usuario::verificaCpfRepetido($inputCpf)===true)
             return "Este CPF já possui um cadastro";
@@ -74,5 +77,17 @@ function validaSenha($inputSenha){
         return false;
 }
 
+if(isset($_GET["a"])){
+    if($_GET["a"]=="cpf"){
+        $validacao=validaCpfRepetido($_GET["v"]);
+        if($validacao===true){
+            echo '{"retorno":"valido"}';
+        }
+        else{
+            echo '{"erro":"'.$validacao.'"}';
+        }
+        
+    }
+}
 
 ?>

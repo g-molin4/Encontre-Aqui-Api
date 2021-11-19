@@ -18,31 +18,34 @@
 
 /* Body */
 body {
-	background: #000;
+	background: #fff;
 	margin: 0;
 	font-family: 'Grota Sans Bold', sans-serif;
 }
 
 /* Header */
 header {
-	background: #fff;
+	background: #000;
 	border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-	color: #000;
+	color: #fff;
 	padding-left: 65px;
 	padding-right: 65px;
 }
 header a {
-	color: #000 !important;
+	color: #fff !important;
 }
 header a:hover {
 	text-decoration: none;
 }
+a.icon_contraste {
+    color: #000 !important;
+}
 
 /* Main */
 main {
-	background: #000;
-	color: #fff;
+	background: #fff;
+	color: #000;
 	padding-left: 90px;
 }
 
@@ -65,16 +68,27 @@ main#landingPage {
 	color: red;
 }
 
+/* Cadastro de Usuário */
+#form-usuario .form-control, #form-orgao .form-control, #form-objeto .form-control, #form-fale-conosco .form-control {
+	border: 2px solid #000;
+}
+
+/* main wrapper */
+main.container.wrapper {
+	min-height: calc(101vh - 150px);
+}
+
 /* Login */
 .card {
-	color: #000;
+	background: #000;
+	color: #fff;
 }
 #form-login input {
-	border: 3px solid #000;
+	border: 3px solid #fff;
 }
 .btn_cad .btn_login {
-	background-color: #000;
-	color: #fff;
+    background-color: #fff;
+    color: #000;
 }
 
 /* Button Cad Form */
@@ -85,8 +99,8 @@ main#landingPage {
 
 /* Default Button */
 .botao {
-	background: #fff;
-	color: #000;
+	background: #000;
+	color: #fff;
     font-size: 1.25rem;
     line-height: 1.5;
 	padding: 0.6rem 1.6rem;
@@ -96,7 +110,7 @@ main#landingPage {
     cursor: pointer;
 }
 .botao a {
-	color: #000;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -109,7 +123,7 @@ main#landingPage {
 
 /* Custom HR  - Landing Page*/
 hr {
-	background: #fff;
+	background: #000;
     width: 92%;
 }
 
@@ -119,14 +133,15 @@ hr {
     height: 15px;
 }
 .icon_contraste:active {
-	background: #fff;
+	background: #000;
 }
 
 /* Footer */
 footer {
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
-	background: #fff;
+	background: #000;
+	color: #fff;
 }
 footer .version{
 	font-size: 10px;

@@ -12,7 +12,7 @@ class Usuario{
     private $_cep;
     private $_bairro;
     private $_enderecoNumero;
-    private $_rua;
+    private $_endereco;
     private $_telefone;
     private $_master;
     
@@ -45,8 +45,8 @@ class Usuario{
     public function getEnderecoNumero(){
         return $this->_enderecoNumero;
     }
-    public function getRua(){
-        return $this->_rua;
+    public function getendereco(){
+        return $this->_endereco;
     }
     public function getTelefone(){
         return $this->_telefone;
@@ -96,30 +96,30 @@ class Usuario{
         ));
         if($stmt->rowCount()>0){
             // return new Usuario($stmt->fetch(PDO::FETCH_ASSOC));
-            return true;
+            // $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
         }
         else{
             echo false;
         }
     }
-    public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$rua,$nome){
+    public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome){
         $conn=connectionFactory();
-        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cpf,cep,bairro,enderecoNumero,telefone,rua,nome) values(:email,:senha,:cpf,:cep,:bairro,:enderecoNumero,:telefone,:rua,:nome)");
+        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cpf,cep,bairro,telefone,endereco,nome) values(:email,:senha,:cpf,:cep,:bairro,:telefone,:endereco,:nome)");
         $stmt->execute([
             "email"=>$email,
             "senha"=>$senha,
             "cpf"=>$cpf,
             "cep"=>$cep,
             "bairro"=>$bairro,
-            "enderecoNumero"=>$enderecoNumero,
             "telefone"=>$telefone,
-            "rua"=>$rua,
+            "endereco"=>$endereco,
             "nome"=>$nome,
         ]);
     }
-    public static function alteraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$rua,$master){
+    public static function alteraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$endereco,$master){
         $conn=connectionFactory();
-        $stmt= $conn->prepare("UPDATE usuario SET email=:email,senha=:senha,cpf=:cpf,cep=:cep,bairro=:bairro,enderecoNumero=:enderecoNumero,telefone=:telefone,rua=:rua,master=:master WHERE id=:userId");
+        $stmt= $conn->prepare("UPDATE usuario SET email=:email,senha=:senha,cpf=:cpf,cep=:cep,bairro=:bairro,enderecoNumero=:enderecoNumero,telefone=:telefone,endereco=:endereco,master=:master WHERE id=:userId");
         $stmt->execute([
             "email"=>$email,
             "senha"=>$senha,
@@ -128,7 +128,7 @@ class Usuario{
             "bairro"=>$bairro,
             "enderecoNumero"=>$enderecoNumero,
             "telefone"=>$telefone,
-            "rua"=>$rua,
+            "endereco"=>$endereco,
             "master"=>$master,
         ]);
     }
