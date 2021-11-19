@@ -145,7 +145,7 @@ $("#cep").blur(function() {
 
 $("#botaoEnvForm").click(function(){
     let cpf= $("#cpf").val()
-    $.getJSON(`http://localhost/Encontre-Aqui-Api/validacao&a=cpf&v=${cpf}`, function(dados){
+    $.getJSON(`http://encontreaqui.tech/validacao&a=cpf&v=${cpf}`, function(dados){
         if(!("erro" in dados)){
             $(".divValidacaoSenha").html("")
 
