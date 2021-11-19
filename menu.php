@@ -2,8 +2,7 @@
 session_start();
 
 $hora=date("H");
-if($hora>=6 && $hora<12)
-    $saudacao="Bom dia, {$_SESSION["nome"]}";
+$saudacao="Olá, {$_SESSION["nome"]}";
 ?>
 <header class="container-fluid navPage">
     <!-- Navbar content -->
