@@ -30,7 +30,6 @@ else{
         <div class="icon d-flex pl-2 pt-2 pb-2">
             <img class="mr-3" src="img/icone_branco.png" alt="Ícone Encontre Aqui" width="30" height="30" />
             <a class="d-flex align-items-center" href="principal">Encontre Aqui</a>
-            <?=$_SESSION?'<div class="d-flex align-items-center m-auto">'.$saudacao.'</div>':""?>
         </div>
         <div class="links d-flex align-items-center">
             <?=$_SESSION?"":'<a class="mr-3" href="login">Login</a>'?>
@@ -53,7 +52,7 @@ else{
                     <a class="dropdown-item pl-4 icon_contraste" href="#"><img src="img/contrast.svg" alt="icone Contraste" class="mr-2" />Contraste</a>
                 </div>
             </div>
-            
+            <?=$_SESSION?'<div class="d-flex align-items-center mr-3">'.$saudacao.'</div>':""?>
             <?=$_SESSION?'<a class="mr-3"href="logout" title="Sair do sistema"><img src="img/log-out.svg" alt=""></a>':""?>
         </div>
     </nav>
