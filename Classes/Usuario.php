@@ -14,7 +14,7 @@ class Usuario{
     private $_enderecoNumero;
     private $_endereco;
     private $_telefone;
-    private $_master;
+    private $_nome;
     
 
     //getters
@@ -51,6 +51,9 @@ class Usuario{
     public function getTelefone(){
         return $this->_telefone;
     }
+    public function getNivel(){
+        return $this->_nivel;
+    }
 
     //setters
     public function setCpf($novoCpf){
@@ -77,13 +80,25 @@ class Usuario{
     public function setTelefone($novoTel){
         $this->_telefone=$novoTel;
     }
+    public function setNivel($novoNivel){
+        $this->_nivel=$novoNivel;
+    }
 
-
-    // public function __construct($arrayUser){
-    //     $this->_userId=$arrayUser["id"];
-    //     $this->_login=$arrayUser["login"];
-    //     $this->_senha=$arrayUser["password"];
-    // }
+    public function __construct($user){
+        $this->_userId=$user->id;
+        $this->_cpf=$user->cpf;
+        $this->_nome=$user->nome;
+        $this->_senha=$user->senha;
+        $this->_email=$user->email;
+        $this->_token=$user->token;
+        $this->_cep=$user->cep;
+        $this->_bairro=$user->bairro;
+        $this->_enderecoNumero=$user->enderecoNumero;
+        $this->_endereco=$user->endereco;
+        $this->_telefone=$user->telefone;
+        $this->_nivel=$user->nivel;
+        $this->_expiraToken=$user->expiraToken;
+    }
 
 
     public static function validaLogin($email,$senha){
