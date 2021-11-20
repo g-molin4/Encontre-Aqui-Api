@@ -172,5 +172,27 @@ class Objeto{
             return "Tipo de arquivo não aceito";
         }
     }
+    public static function objetosFeed($tipo,$id=""){
+        if($tipo=="o")
+            $tipo="orgaoId";
+        else if ($tipo=="a")
+            $tipo="userId";
+        else 
+            $tipo="";
+        
+        $conn=connectionFactory();
+        if(!empty($id)){
+            $stmt=$conn->prepare("SELECT * FROM objetos WHERE $tipo=:$tipo");
+            $stmt->execute([
+                "$tipo"=>$id
+            ]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        else{
+            $stmt=$conn->prepare("SELECT * FROM objetos");
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        }
+    }
 }
 ?>
