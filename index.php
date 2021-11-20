@@ -17,6 +17,10 @@ else if ($pagina=="logout")
     include_once "logout.php";
 else if ($pagina=="list_objetos")
     include_once "objetos_cad.php";
+else if($pagina=="fale-conosco")
+    include_once "fale-conosco.php";
+else if($pagina=="quem-somos")
+    include_once "quem-somos.php";
 else    
     die("essa página não existe");
 ?>
