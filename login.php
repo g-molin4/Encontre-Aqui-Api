@@ -1,6 +1,7 @@
 <?php
 define("__DIR__","localhost/Encontre-Aqui-Api");
 include "Classes/Usuario.php";
+$nivelMinimo=0;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,6 +23,7 @@ include "Classes/Usuario.php";
    
 	<body>
         <?php include "menu.php" ?>
+        <?php if($_SESSION) header("Location: $principal");?>
         <?php
         if($_POST){
             // session_start();
@@ -29,17 +31,13 @@ include "Classes/Usuario.php";
             if( $row!== false){
                 $_SESSION["usuario"]=json_encode($row);
                 // echo "<script> alert('".$_SESSION["email"]."')</script>";
-                if($user->getNivel()==1)
+                if($row["nivel"]==1)
                     header("Location: feed");
-                else if ($user->getNivel()==2)
+                else if ($row["nivel"]==2)
                     header("Location: cadastro-objeto");
-                else if ($user->getNivel()==3)
+                else if ($row["nivel"]==3)
                     header("Location: cadastro-objeto");
-                
             }
-        }
-        if($_SESSION){
-            header("Location: principal");
         }
         ?>
         <main class="container">

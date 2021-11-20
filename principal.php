@@ -17,6 +17,7 @@
 	</head>
 	<body>
 		<?php
+		$nivelMinimo=0;
 		include "menu.php";
 		echo $_SESSION["usuario"]??"";
 		?>

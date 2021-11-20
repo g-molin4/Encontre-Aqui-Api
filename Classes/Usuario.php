@@ -15,6 +15,7 @@ class Usuario{
     private $_endereco;
     private $_telefone;
     private $_nome;
+    private $_orgaoId;
     
 
     //getters
@@ -54,6 +55,9 @@ class Usuario{
     public function getNivel(){
         return $this->_nivel;
     }
+    public function getOrgaoId(){
+        return $this->_orgaoId;
+    }
 
     //setters
     public function setCpf($novoCpf){
@@ -83,6 +87,9 @@ class Usuario{
     public function setNivel($novoNivel){
         $this->_nivel=$novoNivel;
     }
+    public function setOrgaoId($novoOrgaoId){
+        $this->_orgaoId=$novoOrgaoId;
+    }
 
     public function __construct($user){
         $this->_userId=$user->id;
@@ -98,6 +105,7 @@ class Usuario{
         $this->_telefone=$user->telefone;
         $this->_nivel=$user->nivel;
         $this->_expiraToken=$user->expiraToken;
+        $this->_orgaoId=$user->orgaoId;
     }
 
 

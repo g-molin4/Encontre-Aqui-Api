@@ -12,6 +12,7 @@ class Objeto{
     private $_subStatus;
     private $_dataAlteracao;
     private $_admId;
+    private $_imagens;
 
     //getters
     public function getObjetoId(){
@@ -46,6 +47,9 @@ class Objeto{
     }
     public function getAdmId(){
         return $this->_admId;
+    }
+    public function getImagens(){
+        return $this->_imagens;
     }
 
     //setters
@@ -91,14 +95,25 @@ class Objeto{
         $this->_localEntId=$ArrayObjeto["localEntId"];
         $this->_userEncontrouid=$ArrayObjeto["userEncontrouId"];
     }
-    public function cadastraObjeto($inputTipoObjeto,$inputUserEncontrouId,$inputLocalEntId){
+    public static function cadastraObjeto($descricao,$status,$tipoObjetoId,$admId,$orgaoId,$imagem){
         $conn= connectionFactory();
-        $stmt=$conn->prepare("INSERT INTO objeto(tipoObjeto,userEncontrouId,localEntId) values (:tipoObjeto,:userEncontrouId,:localEntId)");
+        $stmt=$conn->prepare("INSERT INTO objeto(descricao,status,tipoObjetoId,admId,orgaoId) values (:descricao,:status,:tipoObjetoId,:admId,:orgaoId)");
         $stmt->execute([
-            "tipoObjeto"=>$inputTipoObjeto,
-            "userEncontrouId"=>$inputUserEncontrouId,
-            "localEntId"=>$inputLocalEntId
+            "descricao"=>$descricao,
+            "status"=>$status,
+            "tipoObjetoId"=>$tipoObjetoId,
+            "admId"=>$admId,
+            "orgaoId"=>$orgaoId
         ]);
+        $objetoId=$conn->lastInsertId();
+        if(Objeto::insereImagem($imagem,$objetoId) <>"Arquivo Anexado"){
+            $stmt2=$conn->prepare("DELETE FROM objeto WHERE id=:objetoId");
+            $stmt2->execute(["objetoId"=>$objetoId]);
+            return "Objeto não cadastrado";
+        }
+        else {
+            return "Objeto cadastrado";
+        }
     }
     public static function pegaObjeto($inputObjetoId){
         $conn=connectionFactory();
@@ -133,11 +148,11 @@ class Objeto{
             "imagemId"=>$inputIdImagem
         ]);
     }
-    public static function insereImagem($imagem,$inputObjetoId,$inputUserEncontrouId){
+    public static function insereImagem($imagem,$inputObjetoId){
         $ext=$imagem["type"];
         $extensao=explode("/",$ext)[1];
         $temporario=$imagem["tmp_name"];
-        $diretorioOrigem="C:\\xampp\\htdocs\\EncontreAqui\\EncontreAquiAnexos\\";
+        $diretorioOrigem="EncontreAquiAnexos\\";
         if($ext =="image/jpeg" || $ext=="image/png" || $ext=="image/jpg"){
             $conn=connectionFactory();
             $stmt=$conn->prepare("SELECT count(*) as total from imagemobjeto where objetoId=:objetoId and visivel=1");
@@ -148,18 +163,18 @@ class Objeto{
 
             $nomeArquivo=md5("{$row["total"]}_$inputObjetoId").".$extensao";
 
-            if(!is_dir($diretorioOrigem.md5("$inputUserEncontrouId-$inputObjetoId")) && $row["total"]==0){
-                mkdir($diretorioOrigem.md5("$inputUserEncontrouId-$inputObjetoId"));
+            if(!is_dir($diretorioOrigem.md5("$inputObjetoId")) && $row["total"]==0){
+                mkdir($diretorioOrigem.md5("$inputObjetoId"));
             }
-            $diretorio=md5("$inputUserEncontrouId-$inputObjetoId");
-            $dirFinal=$diretorioOrigem.md5("$inputUserEncontrouId-$inputObjetoId")."\\$nomeArquivo";
+            $diretorio=md5("$inputObjetoId");
+            $dirFinal=$diretorioOrigem.md5("$inputObjetoId")."\\$nomeArquivo";
             if(move_uploaded_file($temporario,$dirFinal)){
-                $insert= $conn->prepare("INSERT into imagemobjeto (diretorio,nome,objetoId) VALUES (?,?,?)");
+                $insert= $conn->prepare("INSERT into imagemobjeto (diretorio,objetoId,nomeArquivo) VALUES (?,?,?)");
                 // die("$diretorio $nomeArquivo $inputObjetoId");
                 $insert->execute([
-                    $diretorio,
-                    $nomeArquivo,
-                    $inputObjetoId
+                    $dirFinal,
+                    $inputObjetoId,
+                    $nomeArquivo
                 ]);
                 return "Arquivo Anexado";
             }

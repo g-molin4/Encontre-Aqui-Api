@@ -1,5 +1,5 @@
 <?php
-include_once "../conn.php";
+include_once "conn.php";
 class TiposObjeto {
     private $_idObjeto;
     private $_tipo;
@@ -27,7 +27,13 @@ class TiposObjeto {
         $stmt->execute([ 
             "tipoObjetoId"=>$tipoObjetoId
         ]);
-        return new Objeto($stmt->fetch(PDO::FETCH_ASSOC));
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public static function pegaTiposObjeto(){
+        $conn=connectionFactory();
+        $stmt=$conn->prepare("SELECT * FROM tipoobjeto ORDER BY tipo");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function alteraTipoObjeto($inputId,$inputTipoObjeto){
         $conn=connectionFactory();

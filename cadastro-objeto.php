@@ -17,35 +17,22 @@
 	</head>
 
 	<body>
-		<header class="container-fluid navPage">
-			<!-- Navbar content -->
-			<nav class="navbar navbar-dark" id="navbar">
-				<div class="icon d-flex pl-2 pt-2 pb-2">
-					<img class="mr-3" src="img/icone_branco.png" alt="Ícone Encontre Aqui" width="30" height="30" />
-					<a class="d-flex align-items-center" href="index.html">Encontre Aqui</a>
-				</div>
-
-				<div class="links d-flex align-items-center">
-                    <a class="mr-3" href="login.html">Login</a>
-					<a class="mr-3" href="painel-cadastro.html">Painel Cadastro</a>
-                    <a class="mr-3" href="quem-somos.html">Quem Somos</a>
-					<a class="mr-3" href="fale-conosco.html">Fale Conosco</a>
-					<div class="dropdown drop-item mr-3">
-						<a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Acessibilidade
-						</a>
-					  
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						  <a class="dropdown-item pl-4 icon_contraste" href="#"><img src="img/contrast.svg" alt="icone Contraste" class="mr-2" />Contraste</a>
-						</div>
-					  </div>
-				</div>
-			</nav>
-		</header>
+		<?php
+        $nivelMinimo=2;
+        include "Classes/Objeto.php";
+        include "Classes/TiposObjeto.php";
+        include_once "menu.php";
+        if($_POST){
+            extract($_POST);
+            echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$admId,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
+            echo "<script>window.location.href='$principal'</script>";
+            header("Location: $principal");
+        }
+        ?>
 
 		<main class="container wrapper pt-5"  id="cadUsuario">
             <h1>Cadastre o objeto encontrado</h1>
-            <form id="form-objeto" class="form-objeto mt-5">
+            <form id="form-objeto" class="form-objeto mt-5" action="cadastro-objeto" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-4 col-md-12 mb-5 nome_objeto_cad">
                         <label for="nomeObjeto" class="form-label campo_obrigatorio">Titulo</label>
@@ -56,29 +43,31 @@
                             name="nomeObjeto"
                             placeholder="Digite o nome do objeto encontrado"
                             autofocus
+                            required
                         />
                     </div>
 
                     <div class="col-lg-4 col-md-12 mb-5 tipo_objeto_cad">
                         <label for="tipoObjeto" class="form-label campo_obrigatorio">Tipo do Objeto</label>
-                        <select class="form-select form-control" id="tipoObjeto" name="tipoObjeto">
+                        <select class="form-select form-control" id="tipoObjeto" name="tipoObjeto" required>
                             <option value="" selected disabled>Selecione uma das opções</option>
-                            <option value="acessório">Acessório</option>
-                            <option value="documento">Documento</option>
-                            <option value="foneOuvido">Fone de Ouvido</option>
-                            <option value="livro">Livro</option>
-                            <option value="mochila">Mochila</option>
-                            <option value="roupa">Roupa</option>
-                            <option value="outros">Outros</option>
+                            <?php
+                                $objetos=TiposObjeto::pegaTiposObjeto();
+                                foreach($objetos as $objeto){
+                                    ?>
+                                    <option value="<?=$objeto["id"]?>"><?=$objeto["tipo"]?></option>
+                                    <?php
+                                }
+                            ?>
+                            <option value="0">Outros</option>
                         </select>
                     </div>
 
                     <div class="col-lg-4 col-md-12 mb-5 imagemObjeto_cad">
                         <div class="form-group">
                             <label for="imagemObjeto" class="campo_obrigatorio">Insira a imagem do objeto</label>
-                            <input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto
-                            imagemObjeto">
-                          </div>
+                            <input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto" >
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -87,37 +76,9 @@
                         <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4"></textarea>
                     </div>
                 </div>
-
-                <!-- <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-5 objeto_cad">
-                        <label for="objeto_encontrado" class="form-label campo_obrigatorio">Qual objeto você encontrou?</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="objeto_encontrado"
-                            name="objetoEncontrado"
-                            placeholder="Digite qual objeto foi encontrado"
-                        />
-                    </div>
-
-
-
-                    <div class="col-lg-4 col-md-12 mb-5 foto_objeto_cad">
-                        <label for="foto_objeto" class="form-label campo_obrigatorio">Url da foto do Objeto Encontrado</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="foto_objeto"
-                            name="fotoObjeto"
-                            placeholder="Digite a url da Foto do Objeto encontrado"
-                        />
-                    </div>
-                </div> -->
-            </div>
-
-
-                <input type="hidden" id="orgaoId" name="orgaoId"/>
-
+                <input type="hidden" id="orgaoId" name="orgaoId" value="<?=$user->getOrgaoId()?>"/>
+                <input type="hidden" name="admId" value="<?=$user->getUserId()?>">
+                <input type="hidden" name="status" value="Aguardando Devolução">
                 <div class="btn_cad form-group mb-5 pb-5 col-lg-12">
                     <button type="submit" class="text-uppercase mr-3 botao">Enviar</button>
                     <button type="reset" class="text-uppercase ml-3 botao">Cancelar</button>
@@ -142,7 +103,6 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-
         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="js/mask.js"></script>
         <script type="text/javascript" src="js/objeto.js"></script>

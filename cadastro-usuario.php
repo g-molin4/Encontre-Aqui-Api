@@ -27,6 +27,7 @@
         }
     </style>
     <?php
+    $nivelMinimo=3;
     include "Classes/Usuario.php";
     if($_POST){
         extract($_POST);
@@ -51,34 +52,9 @@
         }
         
     }
+    include "menu.php";
     ?>
 	<body>
-		<header class="container-fluid navPage">
-			<!-- Navbar content -->
-			<nav class="navbar navbar-dark" id="navbar">
-				<div class="icon d-flex pl-2 pt-2 pb-2">
-					<img class="mr-3" src="img/icone_branco.png" alt="Ícone Encontre Aqui" width="30" height="30" />
-					<a class="d-flex align-items-center" href="index.html">Encontre Aqui</a>
-				</div>
-
-				<div class="links d-flex align-items-center">
-                    <a class="mr-3" href="login.html">Login</a>
-					<a class="mr-3" href="painel-cadastro.html">Painel Cadastro</a>
-                    <a class="mr-3" href="quem-somos.html">Quem Somos</a>
-					<a class="mr-3" href="fale-conosco.html">Fale Conosco</a>
-					<div class="dropdown drop-item mr-3">
-						<a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Acessibilidade
-						</a>
-					  
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						  <a class="dropdown-item pl-4 icon_contraste" href="#"><img src="img/contrast.svg" alt="icone Contraste" class="mr-2" />Contraste</a>
-						</div>
-					  </div>
-				</div>
-			</nav>
-		</header>
-
 		<main class="container wrapper pt-5"  id="cadUsuario">
             <h1>Você perdeu seu objeto? Cadastre-se</h1>
             <form id="form-usuario" class="form-usuario mt-5" method="post" action="cadastro">

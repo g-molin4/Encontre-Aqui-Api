@@ -5,8 +5,23 @@ $hora=date("H");
 if($_SESSION){
     $user2=json_decode($_SESSION["usuario"]);
     $user=new Usuario(json_decode($_SESSION["usuario"]));
+    if($user->getNivel()==1){
+        $principal="principal";
+    }
+    else if ($user->getNivel()==2){
+        $principal="cadastro-objeto";
+    }
     $primeiroNome=explode(" ",$user->getNome())[0];
     $saudacao="Olá, $primeiroNome";
+    if($user->getNivel()<$nivelMinimo){
+        echo "<script>alert('Você não tem acesso a essa página')</script>";
+        header("Location: $principal");
+    }
+}
+else{
+    if($nivelMinimo>=1){
+        header("Location: principal");
+    }
 }
 ?>
 <header class="container-fluid navPage">

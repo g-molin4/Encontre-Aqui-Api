@@ -12,7 +12,7 @@
 
 include "Classes\\Objeto.php";
 if($_FILES){
-    Objeto::insereImagem($_FILES["arquivo"],3,1);
+    Objeto::insereImagem($_FILES["arquivo"],4);
 }
 ?>
 <form action="teste.php" method="post" enctype="multipart/form-data">
