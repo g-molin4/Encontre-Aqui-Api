@@ -15,6 +15,8 @@ else if ($pagina=="cadastro-objeto")
     include_once "cadastro-objeto.php";
 else if ($pagina=="logout")
     include_once "logout.php";
+else if ($pagina=="list_objetos")
+    include_once "objetos_cad.php";
 else    
     die("essa página não existe");
 ?>
