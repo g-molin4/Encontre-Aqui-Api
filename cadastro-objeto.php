@@ -26,7 +26,7 @@
             extract($_POST);
             echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$admId,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
             echo "<script>window.location.href='$principal'</script>";
-            header("Location: $principal");
+            // header("Location: $principal");
         }
         ?>
 
@@ -59,7 +59,6 @@
                                     <?php
                                 }
                             ?>
-                            <option value="0">Outros</option>
                         </select>
                     </div>
 
