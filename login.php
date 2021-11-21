@@ -27,17 +27,24 @@ $nivelMinimo=0;
         <?php
         if($_POST){
             // session_start();
-            $row=Usuario::validaLogin($_POST["email"],$_POST["senha"]);
-            if( $row!== false){
-                $_SESSION["usuario"]=json_encode($row);
-                // echo "<script> alert('".$_SESSION["email"]."')</script>";
-                if($row["nivel"]==1)
-                    header("Location: feed");
-                else if ($row["nivel"]==2)
-                    header("Location: cadastro-objeto");
-                else if ($row["nivel"]==3)
-                    header("Location: cadastro-objeto");
+            if(!empty($_POST["email"]) && !empty($_POST["senha"])){
+                $row=Usuario::validaLogin($_POST["email"],$_POST["senha"]);
+                if( $row!== false){
+                    $_SESSION["usuario"]=json_encode($row);
+                    // echo "<script> alert('".$_SESSION["email"]."')</script>";
+                    if($row["nivel"]==1)
+                        header("Location: feed");
+                    else if ($row["nivel"]==2)
+                        header("Location: cadastro-objeto");
+                    else if ($row["nivel"]==3)
+                        header("Location: cadastro-objeto");
+                }
+                else{
+                    echo "<script>alert('Email ou senha inválidos')</script>";
+                }
             }
+            else
+                echo "<script>alert('Os campos de Email e Senha devem estar preenchidos')</script>";
         }
         ?>
         <main class="container">
@@ -54,6 +61,7 @@ $nivelMinimo=0;
                                     id="email"
                                     name="email"
                                     placeholder="Digite o seu nome de usuário"
+                                    required
                                 />
                             </div>
         
@@ -65,6 +73,7 @@ $nivelMinimo=0;
                                     id="senha"
                                     name="senha"
                                     placeholder="Digite sua senha"
+                                    required
                                 />
                             </div>
 

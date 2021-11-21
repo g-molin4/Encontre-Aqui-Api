@@ -123,7 +123,7 @@ class Usuario{
             return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
         }
         else{
-            echo false;
+            return false;
         }
     }
     public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome){

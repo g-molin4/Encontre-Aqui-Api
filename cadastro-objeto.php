@@ -65,14 +65,14 @@
                     <div class="col-lg-4 col-md-12 mb-5 imagemObjeto_cad">
                         <div class="form-group">
                             <label for="imagemObjeto" class="campo_obrigatorio">Insira a imagem do objeto</label>
-                            <input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto" >
+                            <input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto" required>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 mb-5 descricao_cad" id="descricao_cad">
                         <label for="descricao" class="form-label campo_obrigatorio">Descrição</label>
-                        <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4"></textarea>
+                        <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4" required></textarea>
                     </div>
                 </div>
                 <input type="hidden" id="orgaoId" name="orgaoId" value="<?=$user->getOrgaoId()?>"/>
@@ -80,8 +80,7 @@
                 <input type="hidden" name="status" value="Aguardando Devolução">
                 <div class="btn_cad form-group mb-5 pb-5 col-lg-12">
                     <button type="submit" class="text-uppercase mr-3 botao">Enviar</button>
-                    <button type="reset" class="text-uppercase ml-3 botao">Cancelar</button>
-                    <a href="painel-cadastro.html"><button type="button" class="text-uppercase ml-3 botao">Voltar</button></a>
+                    <button type="button" class="text-uppercase ml-3 botao" id="but-voltar">Voltar</button>
                 </div>
             </form>
 		</main>
@@ -90,7 +89,7 @@
 			<p class="text-center mb-2">Projeto desenvolvido como Trabalho de Conclusão de Curso na Universidade Candido Mendes (UCAM) em 2021</p>
 			<div class="text-center mt-3 mb-1 version">v. 202111112235</div>
 		</footer>
-
+                            
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -106,5 +105,11 @@
         <script type="text/javascript" src="js/mask.js"></script>
         <script type="text/javascript" src="js/objeto.js"></script>
         <!-- <script type="text/javascript" src="js/usuario.js"></script> -->
+        
+        <script>
+            $("#but-voltar").click(function(){
+                history.back()
+            });
+        </script>
 	</body>
 </html>
