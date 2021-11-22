@@ -17,56 +17,43 @@
 		<link rel="stylesheet" href="css/index.css" />
 
 		<title>Cadastre-se</title>
+
+        <style>
+            .divValidacaoSenha{
+                color: red;
+                font-weight: bold;
+                text-align: center;
+                width: 100%;
+            }
+        </style>
 	</head>
-    <style>
-        .divValidacaoSenha{
-            color: red;
-            font-weight: bold;
-            text-align: center;
-            width: 100%;
-        }
-    </style>
-    <?php
-    $nivelMinimo=2;
-    include "Classes/Usuario.php";
-    if($_POST){
-        extract($_POST);
-        // die(json_encode($_POST)."<br> $cpf $telefone");
-        $val=file_get_contents("http://localhost/Encontre-Aqui-Api/validacao&a=cpf&v={$_POST['cpf']}");
-        $val=json_decode($val);
-        $validaSenha=($_POST["senha"]==$_POST["confirmaSenha"] && !empty($_POST["senha"]) && !empty($_POST["confirmaSenha"]) )?true:false;
-        if(isset($val->retorno)){
-            $cpf=str_replace("-","",str_replace(".","",$cpf));
+
+	<body>
+		<?php
+        $nivelMinimo=3;
+        include "menu.php";
+        include_once "Classes/Orgao.php";
+        if($_POST){
+            extract($_POST);
+            $cnpj=str_replace("/","",str_replace("-","",str_replace(".","",$cnpj)));
             $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
             $cep=str_replace("-","",$cep);
-            // die("$cpf<br>$senha<br>$email<br>$cep<br>$bairro<br>$bairro<br>$telefone<br>$endereco<br>$nome");
-            Usuario::cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome);
-            echo "<script>alert('Usuário Cadastrado')</script>";
+            Orgao::cadastraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$endereco,$senha);
+            echo '<script>alert("Orgão inserido")</script>';
         }
-        else if(isset($val->erro)){
-            echo "<script>alert('{$val->erro}')</script>";
-        }
-        else if($validaSenha===false){
-            echo "<script>alert('As senhas devem ser iguais')</script>";
-
-        }
-        
-    }
-    include "menu.php";
-    ?>
-	<body>
+        ?>
 		<main class="container wrapper pt-5"  id="cadUsuario">
-            <h1>Você perdeu seu objeto? Cadastre-se</h1>
-            <form id="form-usuario" class="form-usuario mt-5" method="post" action="cadastro">
+            <h1>Cadastre seu Órgão</h1>
+            <form id="form-orgao" class="form-orgao mt-5" action="cadastro-orgao" method="post">
                 <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-5 nome_usuario_cad">
-                        <label for="nome" class="form-label campo_obrigatorio">Nome Completo</label>
+                    <div class="col-lg-4 col-md-12 mb-5 nome_empresa_cad">
+                        <label for="nomeEmpresa" class="form-label campo_obrigatorio">Nome da Empresa</label>
                         <input
                             type="text"
                             class="form-control"
                             id="nome"
                             name="nome"
-                            placeholder="Digite o seu nome completo"
+                            placeholder="Digite o nome da empresa"
                             autofocus
                             required
                         />
@@ -92,7 +79,6 @@
                             id="senha"
                             name="senha"
                             placeholder="Digite sua senha"
-                            onkeyup="validaCriacaoSenha()"
                             required
                         />
                     </div>
@@ -107,38 +93,33 @@
                             id="confirmaSenha"
                             name="confirmaSenha"
                             placeholder="Digite a confirmação de senha"
-                            onkeyup="validaCriacaoSenha()"
-                            required
                         />
                     </div>
-
-                    <div class="col-lg-4 col-md-12 mb-5 cpf_cad">
-                        <label for="cpf" class="form-label campo_obrigatorio">CPF</label>
+                    <div class="col-lg-4 col-md-12 mb-5 cnpj_cad">
+                        <label for="cnpj" class="form-label campo_obrigatorio">CNPJ</label>
                         <input
                             type="text"
-                            class="cpf form-control"
-                            id="cpf"
-                            name="cpf"
-                            placeholder="000.000.000-00"
+                            class="cnpj form-control"
+                            id="cnpj"
+                            name="cnpj"
+                            placeholder="00.000.000/0000-00"
                             required
                         />
                     </div>
 
                     <div class="col-lg-4 col-md-12 mb-5 telefoneCelular_cad">
-                        <label for="telefone" class="form-label campo_obrigatorio">Celular</label>
+                        <label for="telefoneCelular" class="form-label campo_obrigatorio">Telefone Celular</label>
                         <input
                             type="text"
                             class="telefone form-control"
                             id="telefone"
                             name="telefone"
-                            maxlength="15"
-                            placeholder="(00) 000000-0000"
+                            maxlength="14"
+                            placeholder="(00) 000000000"
                             required
                         />
                     </div>
-
                 </div>
-
                 <div class="row">
                     <div class="col-lg-4 col-md-12 mb-5 campo_obrigatório">
                         <label for="cep" class="form-label campo_obrigatorio">CEP</label>
@@ -176,10 +157,10 @@
                     </div>
                 </div>
                 <div class="divValidacaoSenha mb-2"></div>
-                <div class="btn_cad form-group mb-5 col-lg-12">
-                    <button type="button" class="text-uppercase mr-3 botao" id="botaoEnvForm">Enviar</button>
+                <div class="btn_cad form-group mb-5 pb-5 col-lg-12">
+                    <button type="submit" class="text-uppercase mr-3 botao" id="botaoEnv">Enviar</button>
                     <!-- <button type="reset" class="text-uppercase ml-3 botao">Cancelar</button> -->
-                    <button type="button" class="text-uppercase ml-3 botao" onclick="history.back()">Voltar</button>
+                    <button type="button" class="text-uppercase ml-3 botao" id="but-voltar">Voltar</button>
                 </div>
             </form>
 		</main>
@@ -191,7 +172,7 @@
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+		<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -204,6 +185,18 @@
         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="js/mask.js"></script>
         <script type="text/javascript" src="js/usuario2.js"></script>
+        
+        <script>
+            $("#but-voltar").click(function(){
+                history.back()
+            });
+            $("#senha").keyup(function(){
+               validaCriacaoSenha(); 
+            });
+            $("#confirmaSenha").keyup(function(){
+               validaCriacaoSenha(); 
+            });
+        </script>
         <!-- <script type="text/javascript" src="js/usuario.js"></script> -->
 	</body>
 </html>

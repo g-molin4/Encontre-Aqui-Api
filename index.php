@@ -21,6 +21,8 @@ else if($pagina=="fale-conosco")
     include_once "fale-conosco.php";
 else if($pagina=="quem-somos")
     include_once "quem-somos.php";
+else if($pagina=="cadastro-orgao")
+    include_once("cadastro-orgao.php");
 else    
     die("essa página não existe");
 ?>

@@ -159,5 +159,21 @@ $("#botaoEnvForm").click(function(){
     });
 });
 
+$("#botaoEnv").click(function(){
+    let cnpj= $("#cnpj").val()
+    $.getJSON(`http://encontreaqui.tech/validacao&a=cnpj&v=${cnpj}`, function(dados){
+        if(!("erro" in dados)){
+            $(".divValidacaoSenha").html("")
+
+            $("#form-usuario").submit()
+            
+        }
+        else{
+            $(".divValidacaoSenha").css("color","red")
+            $(".divValidacaoSenha").html(dados.erro)
+        }
+    });
+});
+
 
 

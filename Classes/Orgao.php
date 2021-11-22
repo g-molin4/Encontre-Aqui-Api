@@ -1,5 +1,6 @@
 <?php
-include_once "../conn.php";
+include_once "conn.php";
+include_once "Classes/Usuario.php";
 /*
     cadastro de orgao - feito
     cadastro de adm
@@ -15,7 +16,7 @@ class Orgao {
     private $_cep;
     private $_bairro;
     private $_enderecoNumero;
-    private $_rua;
+    private $_endereco;
     private $_userId;
 
     //getters
@@ -43,8 +44,8 @@ class Orgao {
     public function getEnderecoNumero(){
         return $this->_enderecoNumero;
     }
-    public function getRua(){
-        return $this->_rua;
+    public function getendereco(){
+        return $this->_endereco;
     }
     public function getUserId(){
         return $this->_userId;
@@ -72,24 +73,35 @@ class Orgao {
     public function setEnderecoNum($novoEnderecoNum){
         $this->_enderecoNumero=$novoEnderecoNum;
     }
-    public function setRua($novoRua){
-        $this->_rua=$novoRua;
+    public function setendereco($novoendereco){
+        $this->_endereco=$novoendereco;
     }
     public function setUserId($UserId){
         $this->_userId=$UserId;
     }
 
-    public function cadastraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$enredecoNumero,$rua,$userId){
+    public static function cadastraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$endereco,$senha){
         $conn= connectionFactory();
-        $stmt=$conn->prepare("INSERT INTO orgao(nome,cnpj,email,telefone,cep,bairro,enderecoNumero,rua,userId) values (:nome,:cnpj,:email,:telefone,:cep,:bairro,:enderecoNumero,:rua,:userId)");
+        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cep,bairro,telefone,endereco,nome) values(:email,:senha,:cep,:bairro,:telefone,:endereco,:nome)");
         $stmt->execute([
+            "email"=>$email,
+            "senha"=>$senha,
+            "cep"=>$cep,
+            "bairro"=>$bairro,
+            "telefone"=>$telefone,
+            "endereco"=>$endereco,
+            "nome"=>$nome,
+        ]);
+        $userId=$conn->lastInsertId();
+        $stmt2=$conn->prepare("INSERT INTO orgao(nome,cnpj,email,telefone,cep,bairro,endereco,userId) values (:nome,:cnpj,:email,:telefone,:cep,:bairro,:endereco,:userId)");
+        $stmt2->execute([
             "nome"=>$nome,
             "cnpj"=>$cnpj,
             "email"=>$email,
             "telefone"=>$telefone,
             "cep"=>$cep,
-            "enderecoNumero"=>$enredecoNumero,
-            "rua"=>$rua,
+            "bairro"=>$bairro,
+            "endereco"=>$endereco,
             "userId"=>$userId,
         ]);
     }
@@ -101,9 +113,9 @@ class Orgao {
         ]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function alteraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$enredecoNumero,$rua,$userId,$id){
+    public function alteraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$enredecoNumero,$endereco,$userId,$id){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("UPDATE orgao set nome=:nome,cnpj=:cnpj,email=:email,telefone=:telefone,cep=:cep,bairro=:bairro,enderecoNumero=:enderecoNumero,rua=:rua,userId=userId where id=:id");
+        $stmt=$conn->prepare("UPDATE orgao set nome=:nome,cnpj=:cnpj,email=:email,telefone=:telefone,cep=:cep,bairro=:bairro,enderecoNumero=:enderecoNumero,endereco=:endereco,userId=userId where id=:id");
         $stmt->execute([
             "nome"=>$nome,
             "cnpj"=>$cnpj,
@@ -112,10 +124,23 @@ class Orgao {
             "cep"=>$cep,
             "bairro"=>$bairro,
             "enderecoNumero"=>$enredecoNumero,
-            "rua"=>$rua,
+            "endereco"=>$endereco,
             "userId"=>$userId,
             "id"=>$id
         ]);
+    }
+    public static function verificaCnpjRepetido($cnpj){
+        $conn=connectionFactory();
+        $stmt=$conn->prepare("SELECT * FROM orgao where cnpj=:cnpj");
+        $stmt->execute([
+            "cnpj"=>$cnpj
+        ]);
+        $countRows=count($stmt->fetchAll());
+
+        if($countRows>0)
+            return true; //é repetido
+        else
+            return false; //não é repetido
     }
 }
 ?>
