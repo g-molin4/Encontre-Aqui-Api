@@ -30,7 +30,7 @@
 
 	<body>
 		<?php
-        $nivelMinimo=0;
+        $nivelMinimo=1;
         include "menu.php";
         include_once "Classes/Orgao.php";
         if($_POST){
