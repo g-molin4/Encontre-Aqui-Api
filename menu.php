@@ -32,18 +32,27 @@ else{
             <a class="d-flex align-items-center" href="principal">Encontre Aqui</a>
         </div>
         <div class="links d-flex align-items-center">
-            <?=$_SESSION?"":'<a class="mr-3" href="login">Login</a>'?>
+            <?=$_SESSION?'<a class="mr-3" href="feed">Objetos Perdidos</a>':'<a class="mr-3" href="login">Login</a>'?>
+            <div class="dropdown drop-item mr-2">
+                
             <?php
                 if($_SESSION){
-                    if($user->getNivel()>=2){
-                        echo '<a class="mr-3" href="cadastro-objeto">Cadastrar Objeto</a>';
-                    }
+                ?>
+                <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  id="dropdownMenuLink2">
+                    Cadastrar
+                </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                        <a class="dropdown-item pl-4 icon_contraste" href="cadastro-objeto"><img src="img/book.svg" alt="icone Contraste" class="mr-2" />Objeto</a>
+                        <?=$user->getNivel()>2?'<a class="dropdown-item pl-4 icon_contraste" href="cadastro"><img src="img/user-plus.svg" alt="icone Contraste" class="mr-2" />Usuario</a>':""?>
+                        <?=$user->getNivel()>3?'<a class="dropdown-item pl-4 icon_contraste" href="cadastro-orgao"><img src="img/shopping-bag.svg" alt="icone Contraste" class="mr-2" />Orgão</a>':""?>
+                    </div>
+                    <?php
                 }
-            ?>
-            <a class="mr-3" href="painel-cadastro">Painel Cadastro</a>
+                ?>
+            </div>
             <a class="mr-3" href="quem-somos">Quem Somos</a>
             <a class="mr-3" href="fale-conosco">Fale Conosco</a>
-            <div class="dropdown drop-item mr-3">
+            <!-- <div class="dropdown drop-item mr-3">
                 <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Acessibilidade
                 </a>
@@ -51,7 +60,7 @@ else{
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item pl-4 icon_contraste" href="#"><img src="img/contrast.svg" alt="icone Contraste" class="mr-2" />Contraste</a>
                 </div>
-            </div>
+            </div> -->
             <?=$_SESSION?'<div class="d-flex align-items-center mr-3">'.$saudacao.'</div>':""?>
             <?=$_SESSION?'<a class="mr-3"href="logout" title="Sair do sistema"><img src="img/log-out.svg" alt=""></a>':""?>
         </div>
