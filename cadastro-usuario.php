@@ -27,7 +27,7 @@
         }
     </style>
     <?php
-    $nivelMinimo=2;
+    $nivelMinimo=0;
     include "Classes/Usuario.php";
     if($_POST){
         extract($_POST);
