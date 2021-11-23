@@ -42,7 +42,7 @@ else{
                     Cadastrar
                 </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                        <a class="dropdown-item pl-4 icon_contraste" href="cadastro-objeto"><img src="img/book.svg" alt="icone Contraste" class="mr-2" />Objeto</a>
+                        <?=$user->getNivel()>=2?'<a class="dropdown-item pl-4 icon_contraste" href="cadastro-objeto"><img src="img/book.svg" alt="icone Contraste" class="mr-2" />Objeto</a>':""?>
                         <?=$user->getNivel()>2?'<a class="dropdown-item pl-4 icon_contraste" href="cadastro"><img src="img/user-plus.svg" alt="icone Contraste" class="mr-2" />Usuario</a>':""?>
                         <?=$user->getNivel()>3?'<a class="dropdown-item pl-4 icon_contraste" href="cadastro-orgao"><img src="img/shopping-bag.svg" alt="icone Contraste" class="mr-2" />Orgão</a>':""?>
                     </div>
@@ -52,7 +52,15 @@ else{
             </div>
             <a class="mr-3" href="quem-somos">Quem Somos</a>
             <a class="mr-3" href="fale-conosco">Fale Conosco</a>
-            <a class="mr-3" href="painel">Painel</a>
+            <?php
+            if($_SESSION){
+                if($user->getNivel()>2){
+            ?>
+                <a class="mr-3" href="painel">Painel</a>
+            <?php
+                }
+            }
+            ?>
             <!-- <div class="dropdown drop-item mr-3">
                 <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Acessibilidade
