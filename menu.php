@@ -52,6 +52,7 @@ else{
             </div>
             <a class="mr-3" href="quem-somos">Quem Somos</a>
             <a class="mr-3" href="fale-conosco">Fale Conosco</a>
+            <a class="mr-3" href="painel">Painel</a>
             <!-- <div class="dropdown drop-item mr-3">
                 <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Acessibilidade

@@ -23,6 +23,8 @@ else if($pagina=="quem-somos")
     include_once "quem-somos.php";
 else if($pagina=="cadastro-orgao")
     include_once("cadastro-orgao.php");
+else if($pagina=="painel")
+    include_once("painel.php");
 else    
     die("essa página não existe");
 ?>
