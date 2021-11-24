@@ -145,34 +145,47 @@ $("#cep").blur(function() {
 
 $("#botaoEnvForm").click(function(){
     let cpf= $("#cpf").val()
-    $.getJSON(`http://encontreaqui.tech/validacao&a=cpf&v=${cpf}`, function(dados){
-        if(!("erro" in dados)){
-            $(".divValidacaoSenha").html("")
+    
+    try{
+        $.getJSON(`http://encontreaqui.tech/validacao&a=cpf&v=${cpf}`, function(dados){
+            if(!("erro" in dados)){
+                $(".divValidacaoSenha").html("")
 
-            $("#form-usuario").submit()
-            
-        }
-        else{
-            $(".divValidacaoSenha").css("color","red")
-            $(".divValidacaoSenha").html(dados.erro)
-        }
-    });
+                $("#form-usuario").submit()
+                
+            }
+            else{
+                $(".divValidacaoSenha").css("color","red")
+                $(".divValidacaoSenha").html(dados.erro)
+            }
+        });
+    }
+    catch(e){
+        $(".divValidacaoSenha").css("color","red")
+        $(".divValidacaoSenha").html("Ocorreu um erro contate o suporte") 
+    }
 });
 
 $("#botaoEnv").click(function(){
     let cnpj= $("#cnpj").val()
-    $.getJSON(`http://encontreaqui.tech/validacao&a=cnpj&v=${cnpj}`, function(dados){
-        if(!("erro" in dados)){
-            $(".divValidacaoSenha").html("")
-
-            $("#form-usuario").submit()
-            
-        }
-        else{
-            $(".divValidacaoSenha").css("color","red")
-            $(".divValidacaoSenha").html(dados.erro)
-        }
-    });
+    try{
+        $.getJSON(`http://encontreaqui.tech/validacao&a=cnpj&v=${cnpj}`, function(dados){
+            if(!("erro" in dados)){
+                $(".divValidacaoSenha").html("")
+    
+                $("#form-usuario").submit()
+                
+            }
+            else{
+                $(".divValidacaoSenha").css("color","red")
+                $(".divValidacaoSenha").html(dados.erro)
+            }
+        });
+    }
+    catch(e){
+        $(".divValidacaoSenha").css("color","red")
+        $(".divValidacaoSenha").html("Ocorreu um erro contate o suporte") 
+    }
 });
 
 

@@ -27,12 +27,12 @@
         }
     </style>
     <?php
-    $nivelMinimo=1;
+    $nivelMinimo=0;
     include "Classes/Usuario.php";
     if($_POST){
         extract($_POST);
         // die(json_encode($_POST)."<br> $cpf $telefone");
-        $val=file_get_contents("http://localhost/Encontre-Aqui-Api/validacao&a=cpf&v={$_POST['cpf']}");
+        $val=file_get_contents("https://encontreaqui.tech/Encontre-Aqui-Api/validacao&a=cpf&v={$_POST['cpf']}");
         $val=json_decode($val);
         $validaSenha=($_POST["senha"]==$_POST["confirmaSenha"] && !empty($_POST["senha"]) && !empty($_POST["confirmaSenha"]) )?true:false;
         if(isset($val->retorno)){
