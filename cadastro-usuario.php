@@ -30,8 +30,11 @@
     $nivelMinimo=0;
     include "Classes/Usuario.php";
     if($_POST){
+        ini_set('display_errors',1);
+        ini_set('display_startup_erros',1);
+        error_reporting(E_ALL);
         extract($_POST);
-        die(json_encode($_POST)."<br> $cpf $telefone");
+        // die(json_encode($_POST)."<br> $cpf $telefone");
         $val=file_get_contents("https://encontreaqui.tech/validacao&a=cpf&v={$_POST['cpf']}");
         $val=json_decode($val);
         $validaSenha=($_POST["senha"]==$_POST["confirmaSenha"] && !empty($_POST["senha"]) && !empty($_POST["confirmaSenha"]) )?true:false;
@@ -39,7 +42,7 @@
             $cpf=str_replace("-","",str_replace(".","",$cpf));
             $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
             $cep=str_replace("-","",$cep);
-            // die("$cpf<br>$senha<br>$email<br>$cep<br>$bairro<br>$bairro<br>$telefone<br>$endereco<br>$nome");
+            die("$cpf<br>$senha<br>$email<br>$cep<br>$bairro<br>$bairro<br>$telefone<br>$endereco<br>$nome");
             Usuario::cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome);
             echo "<script>alert('Usuário Cadastrado')</script>";
         }
