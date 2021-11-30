@@ -32,7 +32,15 @@ else{
             <a class="d-flex align-items-center" href="principal">Encontre Aqui</a>
         </div>
         <div class="links d-flex align-items-center">
-            <?=$_SESSION?'<a class="mr-3" href="feed">Objetos Perdidos</a>':'<a class="mr-3" href="login">Login</a>'?>
+            <?php
+            if($_SESSION){
+                if($nivel==2)
+                    $extraOrgao= "Orgao";
+                else
+                    $extraOrgao="";
+            }
+            ?>
+            <?=$_SESSION?'<a class="mr-3" href="feedObjetos">Objetos Perdidos</a>':'<a class="mr-3" href="login">Login</a>'?>
             <div class="dropdown drop-item mr-2">
                 <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  id="dropdownMenuLink2">
                     Cadastrar
