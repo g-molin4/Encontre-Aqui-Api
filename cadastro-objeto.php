@@ -22,6 +22,9 @@
         include "Classes/Objeto.php";
         include "Classes/TiposObjeto.php";
         include_once "menu.php";
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
         if($_POST){
             extract($_POST);
             $cpf=str_replace("-","",str_replace(".","",$cpf));
