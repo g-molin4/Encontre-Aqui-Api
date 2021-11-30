@@ -152,7 +152,7 @@ class Objeto{
         $ext=$imagem["type"];
         $extensao=explode("/",$ext)[1];
         $temporario=$imagem["tmp_name"];
-        $diretorioOrigem="//EncontreAquiAnexos//";
+        $diretorioOrigem="EncontreAquiAnexos/";
         if($ext =="image/jpeg" || $ext=="image/png" || $ext=="image/jpg"){
             $conn=connectionFactory();
             $stmt=$conn->prepare("SELECT count(*) as total from imagemobjeto where objetoId=:objetoId and visivel=1");
@@ -167,7 +167,7 @@ class Objeto{
                 mkdir($diretorioOrigem.md5("$inputObjetoId"));
             }
             $diretorio=md5("$inputObjetoId");
-            $dirFinal=$diretorioOrigem.md5("$inputObjetoId")."//$nomeArquivo";
+            $dirFinal=$diretorioOrigem.md5("$inputObjetoId")."/$nomeArquivo";
             if(move_uploaded_file($temporario,$dirFinal)){
                 $insert= $conn->prepare("INSERT into imagemobjeto (diretorio,objetoId,nomeArquivo) VALUES (?,?,?)");
                 // die("$diretorio $nomeArquivo $inputObjetoId");
