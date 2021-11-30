@@ -30,7 +30,7 @@
                 echo "<script>alert('Nenhum objeto encontrado')</script>";
                 echo "<script>window.location.href='principal'</script>";
             }
-            var_dump($objeto);
+            // var_dump($objeto);
         }
         if($_POST){
             // extract($_POST);
