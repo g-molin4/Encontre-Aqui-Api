@@ -42,7 +42,7 @@
             $cpf=str_replace("-","",str_replace(".","",$cpf));
             $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
             $cep=str_replace("-","",$cep);
-            die("$cpf<br>$senha<br>$email<br>$cep<br>$bairro<br>$bairro<br>$telefone<br>$endereco<br>$nome");
+            // die("$cpf<br>$senha<br>$email<br>$cep<br>$bairro<br>$bairro<br>$telefone<br>$endereco<br>$nome");
             Usuario::cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome);
             echo "<script>alert('Usuário Cadastrado')</script>";
         }
