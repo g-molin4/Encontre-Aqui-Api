@@ -29,5 +29,7 @@ else if ($pagina == "cadastro-orgao")
     include_once("cadastro-orgao.php");
 else if ($pagina == "painel")
     include_once("painel.php");
+else if ($pagina=="altera-objeto")
+    include_once "altera-objeto.php";
 else
     die("essa página não existe");

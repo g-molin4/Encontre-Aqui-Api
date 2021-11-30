@@ -18,18 +18,28 @@
 
 	<body>
 		<?php
-        $nivelMinimo=0;
+        $nivelMinimo=2;
         include "Classes/Objeto.php";
         include "Classes/TiposObjeto.php";
         include_once "menu.php";
+        if (isset($_GET["id"])){
+            $objeto=Objeto::pegaObjeto($_GET["id"]);
+            if(count($objeto)>0){
+            }
+            else{
+                echo "<script>alert('Nenhum objeto encontrado')</script>";
+                echo "<script>window.location.href='principal'</script>";
+            }
+            var_dump($objeto);
+        }
         if($_POST){
-            extract($_POST);
-            $cpf=str_replace("-","",str_replace(".","",$cpf));
-            $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
-            $cep=str_replace("-","",$cep);
-            echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$admId,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
+            // extract($_POST);
+            // $cpf=str_replace("-","",str_replace(".","",$cpf));
+            // $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
+            // $cep=str_replace("-","",$cep);
+            // echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$admId,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
             // echo "<script>window.location.href='$principal'</script>";
-            // header("Location: $principal");
+            // // header("Location: $principal");
         }
         ?>
 
@@ -39,13 +49,13 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-12 mb-5 tipo_objeto_cad">
                         <label for="tipoObjeto" class="form-label campo_obrigatorio">Tipo do Objeto</label>
-                        <select class="form-select form-control" id="tipoObjeto" name="tipoObjeto" required>
+                        <select class="form-select form-control" id="tipoObjeto" name="tipoObjeto" required <?=$user->getNivel()==1?"disabled":""?>>
                             <option value="" selected disabled>Selecione uma das opções</option>
                             <?php
                                 $objetos=TiposObjeto::pegaTiposObjeto();
-                                foreach($objetos as $objeto){
+                                foreach($objetos as $tipoobjeto){
                                     ?>
-                                    <option value="<?=$objeto["id"]?>"><?=$objeto["tipo"]?></option>
+                                    <option value="<?=$tipoobjeto["id"]?>" <?=$objeto["tipoObjetoId"]==$tipoobjeto["id"]?"selected":""?>><?=$tipoobjeto["tipo"]?></option>
                                     <?php
                                 }
                             ?>
@@ -55,19 +65,27 @@
                     <div class="col-lg-4 col-md-12 mb-5 imagemObjeto_cad">
                         <div class="form-group">
                             <label for="imagemObjeto" class="campo_obrigatorio">Insira a imagem do objeto</label>
-                            <input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto" required>
+                            <input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto" <?=$user->getNivel()==1?"disabled":""?> required>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 mb-5 descricao_cad" id="descricao_cad">
                         <label for="descricao" class="form-label campo_obrigatorio">Descrição</label>
-                        <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4" required></textarea>
+                        <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4" required <?=$user->getNivel()==1?"disabled":""?>><?=$objeto["descricao"]?></textarea>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mb-5 descricao_cad" id="descricao_cad">
+                        <label for="descricao" class="form-label campo_obrigatorio">Tipo do Objeto</label>
+                        <select class="form-select form-control" id="status" name="status" required>
+                            <option value="" disabled>Selecione uma das opções</option>
+                            <option value="Aguardando retirada" <?=$objeto["status"]=="Aguardando retirada"?"selected":""?>>Aguardando retirada</option>
+                            <option value="Entregue" <?=$objeto["status"]=="Entregue"?"selected":""?>>Entregue ao Usuario</option>
+                        </select>
                     </div>
                 </div>
                 <input type="hidden" id="orgaoId" name="orgaoId" value="<?=$user->getOrgaoId()?>"/>
                 <input type="hidden" name="admId" value="<?=$user->getUserId()?>">
-                <input type="hidden" name="status" value="Aguardando Devolução">
+
                 <div class="btn_cad form-group mb-5 pb-5 col-lg-12">
                     <button type="submit" class="text-uppercase mr-3 botao">Enviar</button>
                     <button type="button" class="text-uppercase ml-3 botao" id="but-voltar">Voltar</button>

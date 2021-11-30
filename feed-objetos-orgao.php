@@ -32,7 +32,7 @@
 </head>
 
 <?php
-$nivelMinimo = 0;
+$nivelMinimo = 2;
 include "menu.php";
 ?>
 
@@ -67,7 +67,7 @@ include "menu.php";
 
     <script>
         $(document).ready(function($) {
-            let urlJson = window.location.origin + "/encontreaqui/list_objetos&a=o&b=16";
+            let urlJson = window.location.origin + "/encontreaqui/list_objetos&a=o&b=<?=$user->getOrgaoId()?>";
             // let urlJson = window.location.origin + "/list_objetos";
             console.log(urlJson);
 
