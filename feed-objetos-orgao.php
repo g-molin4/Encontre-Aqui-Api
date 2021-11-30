@@ -67,7 +67,7 @@ include "menu.php";
 
     <script>
         $(document).ready(function($) {
-            let urlJson = window.location.origin + "list_objetos&a=o&b=<?=$user->getOrgaoId()?>";
+            let urlJson = window.location.origin + "/list_objetos&a=o&b=<?=$user->getOrgaoId()?>";
             // let urlJson = window.location.origin + "/list_objetos";
             console.log(urlJson);
 
