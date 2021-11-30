@@ -152,7 +152,7 @@ class Objeto{
         $ext=$imagem["type"];
         $extensao=explode("/",$ext)[1];
         $temporario=$imagem["tmp_name"];
-        $diretorioOrigem="/home/u626106768/domains/encontreaqui.tech/public_html/EncontreAquiAnexos/";
+        $diretorioOrigem="/EncontreAquiAnexos/";
         if($ext =="image/jpeg" || $ext=="image/png" || $ext=="image/jpg"){
             $conn=connectionFactory();
             $stmt=$conn->prepare("SELECT count(*) as total from imagemobjeto where objetoId=:objetoId and visivel=1");
