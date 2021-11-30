@@ -22,17 +22,14 @@
         include "Classes/Objeto.php";
         include "Classes/TiposObjeto.php";
         include_once "menu.php";
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
         if($_POST){
             extract($_POST);
             $cpf=str_replace("-","",str_replace(".","",$cpf));
             $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
             $cep=str_replace("-","",$cep);
             echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$admId,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
-            // echo "<script>window.location.href='$principal'</script>";
-            // header("Location: $principal");
+            echo "<script>window.location.href='$principal'</script>";
+            header("Location: $principal");
         }
         ?>
 
