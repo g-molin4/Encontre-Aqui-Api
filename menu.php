@@ -34,7 +34,7 @@ else{
         <div class="links d-flex align-items-center">
             <?php
             if($_SESSION){
-                if($nivel==2)
+                if($user->getNivel()==2)
                     $extraOrgao= "Orgao";
                 else
                     $extraOrgao="";
