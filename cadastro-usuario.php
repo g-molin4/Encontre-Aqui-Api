@@ -32,7 +32,7 @@
     error_reporting(E_ALL);
     $nivelMinimo=0;
     include "menu.php";
-    include "Classes/Usuario.php";
+    include_once "Classes/Usuario.php";
     if($_POST){
         extract($_POST);
         // die(json_encode($_POST)."<br> $cpf $telefone");
