@@ -45,7 +45,7 @@
 				<div class="col-6">
 					<div class="col-12 pl-5 mt-2">
 						<h1 class="titulo_principal">Achou um objeto pessoal <br> e quer devolver? <br> Podemos te ajudar !</h1>
-						<h6 class="titulo_complementar mt-4">Nossa plataforma conecta o objeto perdido com seu respectivo dono. <br> Disponibilizamos uma lista de objetos que já foram encontrados pelos usuários <br> e disponibilizamos qual olocal de entrega para a retirada. O Usuário que perdeu <br> o objeto tem até 3 meses para retirar no local indicado.</h6>
+						<h6 class="titulo_complementar mt-4">Nossa plataforma conecta o objeto perdido com seu respectivo dono. <br> Disponibilizamos uma lista de objetos que já foram encontrados pelos usuários <br> e disponibilizamos o local de entrega para a retirada.</h6>
 					</div>
 					<div class="col-12 pl-5">
 						<button type="button" class="mt-4 botao"><a href="cadastro-usuario.html">Saiba mais</a></button>

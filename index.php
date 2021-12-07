@@ -33,5 +33,7 @@ else if ($pagina=="altera-objeto")
     include_once "altera-objeto.php";
 else if ($pagina=="teste")
     include_once "teste.php";
+else if ($pagina=="objeto")
+    include_once "detalhe-objeto.php";
 else
     die("essa página não existe");
