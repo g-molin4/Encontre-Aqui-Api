@@ -31,6 +31,7 @@
     ini_set('display_startup_erros',1);
     error_reporting(E_ALL);
     $nivelMinimo=0;
+    include "menu.php";
     include "Classes/Usuario.php";
     if($_POST){
         extract($_POST);
@@ -64,7 +65,6 @@
         }
         
     }
-    include "menu.php";
     ?>
 	<body>
 		<main class="container wrapper pt-5"  id="cadUsuario">
