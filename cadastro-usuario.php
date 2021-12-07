@@ -27,13 +27,12 @@
         }
     </style>
     <?php
+    ini_set('display_errors',1);
+    ini_set('display_startup_erros',1);
+    error_reporting(E_ALL);
     $nivelMinimo=0;
-    include "menu.php";
     include "Classes/Usuario.php";
     if($_POST){
-        ini_set('display_errors',1);
-        ini_set('display_startup_erros',1);
-        error_reporting(E_ALL);
         extract($_POST);
         // die(json_encode($_POST)."<br> $cpf $telefone");
         $val=file_get_contents("https://encontreaqui.tech/validacao&a=cpf&v={$_POST['cpf']}");
@@ -65,6 +64,7 @@
         }
         
     }
+    include "menu.php";
     ?>
 	<body>
 		<main class="container wrapper pt-5"  id="cadUsuario">
