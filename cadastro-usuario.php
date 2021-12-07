@@ -43,7 +43,8 @@
             $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
             $cep=str_replace("-","",$cep);
             // die("$cpf<br>$senha<br>$email<br>$cep<br>$bairro<br>$bairro<br>$telefone<br>$endereco<br>$nome");
-            Usuario::cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome);
+            $orgaoId=$orgaoId??NULL;
+            Usuario::cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome,$nivel,$orgaoId);
             echo "<script>alert('Usuário Cadastrado')</script>";
         }
         else if(isset($val->erro)){
@@ -178,6 +179,26 @@
                         />
                     </div>
                 </div>
+                <?php
+                if($_SESSION){
+                    if($user->getNivel()==2){
+                        ?>
+                        <input type="hidden" name="nivel" value="2">
+                        <input type="hidden" name="orgaoId" value="<?=$user->getOrgaoId()?>">
+                        <?php
+                    }
+                    else{
+                        ?>
+                        <input type="hidden" name="nivel" value="1">
+                        <?php
+                    }
+                }
+                else{
+                    ?>
+                    <input type="hidden" name="nivel" value="1">
+                    <?php
+                }
+                ?>
                 <div class="divValidacaoSenha mb-2"></div>
                 <div class="btn_cad form-group mb-5 col-lg-12">
                     <button type="button" class="text-uppercase mr-3 botao" id="botaoEnvForm">Enviar</button>

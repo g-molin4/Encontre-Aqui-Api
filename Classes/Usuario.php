@@ -126,9 +126,9 @@ class Usuario{
             return false;
         }
     }
-    public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome){
+    public static function cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome,$nivel=1,$orgaoId){
         $conn=connectionFactory();
-        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cpf,cep,bairro,telefone,endereco,nome) values(:email,:senha,:cpf,:cep,:bairro,:telefone,:endereco,:nome)");
+        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cpf,cep,bairro,telefone,endereco,nome,nivel,orgaoId) values(:email,:senha,:cpf,:cep,:bairro,:telefone,:endereco,:nome,$nivel,:orgaoId)");
         $stmt->execute([
             "email"=>$email,
             "senha"=>$senha,
@@ -138,6 +138,8 @@ class Usuario{
             "telefone"=>$telefone,
             "endereco"=>$endereco,
             "nome"=>$nome,
+            "nivel"=>$nivel,
+            "orgaoId"=>$orgaoId
         ]);
     }
     public static function alteraUser($email,$senha,$cpf,$cep,$bairro,$enderecoNumero,$telefone,$endereco,$master){
