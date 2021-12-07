@@ -25,7 +25,7 @@
         if($_SESSION){
             if (isset($_GET["id"])){
                 $objeto=Objeto::pegaObjeto($_GET["id"]);
-                if(count($objeto)>0){
+                if($objeto !==false){
                     if($user->getNivel()==2){
                         if($user->getOrgaoId()==$objeto["orgaoId"]){
                         }
@@ -55,14 +55,13 @@
                 echo "<script>alert('Alterações concluídas')</script>";
                 $objeto=Objeto::pegaObjeto($_GET["id"]);
             }
-            
+       
         }
         else{
             echo "<script>alert('Você não tem acesso a essa página')</script>";
             echo "<script>window.location.href='principal'</script>";
             die();
         }
-
         ?>
 
 		<main class="container wrapper pt-5"  id="cadUsuario">
