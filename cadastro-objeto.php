@@ -31,7 +31,7 @@
                 $status="Aguardando retirada";
                 $orgaoId=$user->getOrgaoId();
                 echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
-                echo "<script>window.location.href='$principal'</script>";
+                // echo "<script>window.location.href='$principal'</script>";
                 header("Location: $principal");
             }
         }

@@ -32,8 +32,11 @@
 </head>
 
 <?php
-$nivelMinimo = 0;
+$nivelMinimo = 1;
 include "menu.php";
+if($user->getNivel()==2){
+    echo "<script>window.location.href='feedObjetosOrgao'</script>";
+}
 ?>
 
 <body>
