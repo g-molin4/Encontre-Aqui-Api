@@ -50,6 +50,27 @@
             <div class="row">
                 <div class="col-lg-4 col-md-12 mb-5 imagemObjeto_cad">
                     <div class="form-group">
+                        <label for="CEP" class="">Nome:</label>
+                        <!--<input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto" <?=$user->getNivel()==1?"disabled":""?> required> -->
+                        <div class="border text-center p-1">
+                            <?=$objeto->orgao->nome?>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-5 tipo_objeto_cad">
+                    <label for="tipoObjeto" class="form-label ">Email:</label>
+                    <div class="border text-center p-1"><?=$objeto->orgao->email?></div>
+                </div>
+    
+                <div class="col-lg-4 col-md-12 mb-5 descricao_cad">
+                    <label for="descricao" class="form-label ">Telefone:</label>
+                    <div class="border text-center p-1"><?=$objeto->orgao->telefone?></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-12 mb-5 imagemObjeto_cad">
+                    <div class="form-group">
                         <label for="CEP" class="">CEP:</label>
                         <!--<input type="file" class="form-control-file mt-1" id="imagemObjeto" name="imagemObjeto" <?=$user->getNivel()==1?"disabled":""?> required> -->
                         <div class="border text-center p-1">
