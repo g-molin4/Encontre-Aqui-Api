@@ -7,6 +7,7 @@ if($_SESSION){
     $usuario=json_decode($_SESSION["usuario"]);
     $tipo=$_GET["a"]??"";
     $id=$_GET["b"]??"";
+    die(json_encode($usuario));
     if($usuario->nivel==2 && empty($tipo)){
         die('{"erro":"Você não tem acesso a esse conteúdo"}');
     }
