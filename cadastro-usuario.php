@@ -45,6 +45,8 @@
             $cep=str_replace("-","",$cep);
             // die("$cpf<br>$senha<br>$email<br>$cep<br>$bairro<br>$bairro<br>$telefone<br>$endereco<br>$nome");
             if($_SESSION){
+                $nivel=2;
+                $orgaoId=$user->getOrgaoId();
                 if($user->getNivel()==2)
                     Usuario::cadastraUser($email,$senha,$cpf,$cep,$bairro,$telefone,$endereco,$nome,$nivel,$orgaoId);
                 else
