@@ -51,7 +51,11 @@
             }
             if($_POST){
                 extract($_POST);
+                Objeto::alteraObjeto($descricao,$status,$tipoObjeto,trim($_GET["id"]));
+                echo "<script>alert('Alterações concluídas')</script>";
+                $objeto=Objeto::pegaObjeto($_GET["id"]);
             }
+            
         }
         else{
             echo "<script>alert('Você não tem acesso a essa página')</script>";
@@ -63,7 +67,7 @@
 
 		<main class="container wrapper pt-5"  id="cadUsuario">
             <h1>Cadastre o objeto encontrado</h1>
-            <form id="form-objeto" class="form-objeto mt-5" action="cadastro-objeto" method="post" enctype="multipart/form-data">
+            <form id="form-objeto" class="form-objeto mt-5" action="altera-objeto&id=<?=$_GET["id"]?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-4 col-md-12 mb-5 tipo_objeto_cad">
                         <label for="tipoObjeto" class="form-label campo_obrigatorio">Tipo do Objeto</label>

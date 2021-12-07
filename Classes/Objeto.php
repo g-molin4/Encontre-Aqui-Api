@@ -122,14 +122,14 @@ class Objeto{
         ]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function alteraObjeto($inputId,$inputTipoObjeto,$inputLocalEntId,$inputUserEncontrouId){
+    public static function alteraObjeto($descricao,$status,$tipoObjetoId,$objetoId){
         $conn=connectionFactory();
-        $stmt=$conn->prepare("UPDATE objeto set tipoObjeto=:tipoObjeto,localEntId=:localEntId,userEncontrouId=:userEncontrouId where id=:id");
+        $stmt=$conn->prepare("UPDATE objeto set descricao=:descricao,status=:status,tipoObjetoId=:tipoObjetoId where id=:objetoId");
         $stmt->execute([
-            "id"=>$inputId,
-            "tipoObjeto"=>$inputTipoObjeto,
-            "localEntId"=>$inputLocalEntId,
-            "userEntId"=>$inputUserEncontrouId
+            "descricao"=>$descricao,
+            "status"=>$status,
+            "tipoObjetoId"=>$tipoObjetoId,
+            "objetoId"=>$objetoId
         ]);
     }
     public static function pegaImagens($inputObjetoId){
