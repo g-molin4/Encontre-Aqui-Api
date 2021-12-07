@@ -27,7 +27,8 @@
             $cpf=str_replace("-","",str_replace(".","",$cpf));
             $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
             $cep=str_replace("-","",$cep);
-            echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$admId,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
+            $status="Aguardando retirada";
+            echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
             echo "<script>window.location.href='$principal'</script>";
             header("Location: $principal");
         }
@@ -65,9 +66,7 @@
                         <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4" required></textarea>
                     </div>
                 </div>
-                <input type="hidden" id="orgaoId" name="orgaoId" value="<?=$user->getOrgaoId()?>"/>
-                <input type="hidden" name="admId" value="<?=$user->getUserId()?>">
-                <input type="hidden" name="status" value="Aguardando Devolução">
+                <input type="hidden" name="status" value="Aguardando retirada">
                 <div class="btn_cad form-group mb-5 pb-5 col-lg-12">
                     <button type="submit" class="text-uppercase mr-3 botao">Enviar</button>
                     <button type="button" class="text-uppercase ml-3 botao" id="but-voltar">Voltar</button>

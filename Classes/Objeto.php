@@ -95,14 +95,13 @@ class Objeto{
         $this->_localEntId=$ArrayObjeto["localEntId"];
         $this->_userEncontrouid=$ArrayObjeto["userEncontrouId"];
     }
-    public static function cadastraObjeto($descricao,$status,$tipoObjetoId,$admId,$orgaoId,$imagem){
+    public static function cadastraObjeto($descricao,$status,$tipoObjetoId,$orgaoId,$imagem){
         $conn= connectionFactory();
-        $stmt=$conn->prepare("INSERT INTO objeto(descricao,status,tipoObjetoId,admId,orgaoId) values (:descricao,:status,:tipoObjetoId,:admId,:orgaoId)");
+        $stmt=$conn->prepare("INSERT INTO objeto(descricao,status,tipoObjetoId,orgaoId) values (:descricao,:status,:tipoObjetoId,:orgaoId)");
         $stmt->execute([
             "descricao"=>$descricao,
             "status"=>$status,
             "tipoObjetoId"=>$tipoObjetoId,
-            "admId"=>$admId,
             "orgaoId"=>$orgaoId
         ]);
         $objetoId=$conn->lastInsertId();
