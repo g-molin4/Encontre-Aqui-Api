@@ -133,7 +133,7 @@ class Objeto{
             "userEntId"=>$inputUserEncontrouId
         ]);
     }
-    public function pegaImagens($inputObjetoId){
+    public static function pegaImagens($inputObjetoId){
         $conn=connectionFactory();
         $stmt=$conn->prepare("SELECT * from imagemobjeto where objetoId=:objetoId and visivel=1");
         $stmt->execute([
