@@ -18,19 +18,27 @@
 
 	<body>
 		<?php
-        $nivelMinimo=0;
+        $nivelMinimo=2;
         include "Classes/Objeto.php";
         include "Classes/TiposObjeto.php";
         include_once "menu.php";
-        if($_POST){
-            extract($_POST);
-            $cpf=str_replace("-","",str_replace(".","",$cpf));
-            $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
-            $cep=str_replace("-","",$cep);
-            $status="Aguardando retirada";
-            echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
-            echo "<script>window.location.href='$principal'</script>";
-            header("Location: $principal");
+        if($_SESSION){
+            if($_POST){
+                extract($_POST);
+                $cpf=str_replace("-","",str_replace(".","",$cpf));
+                $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
+                $cep=str_replace("-","",$cep);
+                $status="Aguardando retirada";
+                $orgaoId=$user->getOrgaoId();
+                echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
+                echo "<script>window.location.href='$principal'</script>";
+                header("Location: $principal");
+            }
+        }
+        else{
+            echo "<script>alert('Você não tem acesso a essa página')</script>";
+            echo "<script>window.location.href='principal'</script>";
+            die();
         }
         ?>
 
