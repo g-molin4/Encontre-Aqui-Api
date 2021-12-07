@@ -28,9 +28,9 @@
         if($_SESSION){
             if($_POST){
                 extract($_POST);
-                $cpf=str_replace("-","",str_replace(".","",$cpf));
-                $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
-                $cep=str_replace("-","",$cep);
+                // $cpf=str_replace("-","",str_replace(".","",$cpf));
+                // $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
+                // $cep=str_replace("-","",$cep);
                 $status="Aguardando retirada";
                 $orgaoId=$user->getOrgaoId();
                 echo "<script>alert('".Objeto::cadastraObjeto($descricao,$status,$tipoObjeto,$orgaoId,$_FILES["imagemObjeto"])."')</script>";
