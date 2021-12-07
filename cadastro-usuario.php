@@ -28,6 +28,7 @@
     </style>
     <?php
     $nivelMinimo=0;
+    include "menu.php";
     include "Classes/Usuario.php";
     if($_POST){
         ini_set('display_errors',1);
@@ -64,7 +65,6 @@
         }
         
     }
-    include "menu.php";
     ?>
 	<body>
 		<main class="container wrapper pt-5"  id="cadUsuario">
