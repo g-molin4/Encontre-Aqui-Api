@@ -100,7 +100,7 @@
                             $imagem=Objeto::pegaImagens($objeto["id"]);
                             ?>
                             <div>
-                                <a href="<?=$imagem[0]["diretorio"]?>" class="mt-1">Veja a Imagem</a>
+                                <a href="<?=$imagem["diretorio"]?>" class="mt-1">Veja a Imagem</a>
                             </div>
                             
                         </div>
