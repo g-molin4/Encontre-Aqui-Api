@@ -104,7 +104,7 @@ if($user->getNivel()==2){
                                     '<p class="card-text">'+result.descricao+'</p>'+
                                 '</div>'+
                             '</div>'
-                        '</a>'    ;
+                        '</a>';
                         
                     });
                     // "<ul id='" + result.id + "'" + "class='listaObjetos mb-4 pl-5 pt-4 pr-5 pb-4'>"+
