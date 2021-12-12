@@ -61,7 +61,7 @@ if($user->getNivel()==1 || $user->getNivel()==3){
     <main class="container wrapper pt-3" id="listaObjetosPerdidos">
 
         <h1 class="titulo_cad_login mt-5 mb-3 pb-5">Feed dos Objetos Perdidos do Orgão</h1>
-        <div class="w-100">
+        <div class="w-100 mb-5">
             <div class="m-auto">
                 <form action="feedObjetosOrgao" method="get">
                     <select class="form-select form-control" id="tipoObjeto" name="tipoObjeto" required>
