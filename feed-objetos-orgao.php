@@ -64,7 +64,7 @@ if($user->getNivel()==1 || $user->getNivel()==3){
         <div class="w-100 mb-5">
             <form action="feedObjetosOrgao" method="get">
                 <div class="m-auto d-flex justify-content-around">
-                    <select class="form-select form-control mx-3" id="tipoObjeto" name="tipoObjeto" required>
+                    <select class="form-select form-control mx-3 my-auto" id="tipoObjeto" name="tipoObjeto" required>
                         <option value="" selected disabled>Selecione uma das opções</option>
                         <?php
                             $objetos=TiposObjeto::pegaTiposObjeto();
@@ -75,7 +75,7 @@ if($user->getNivel()==1 || $user->getNivel()==3){
                             }
                         ?>
                     </select>
-                    <select class="form-select form-control mx-3" id="status" name="status" required>
+                    <select class="form-select form-control mx-3 my-auto" id="status" name="status" required>
                         <option value="" disabled>Selecione uma das opções</option>
                         <option value="Aguardando retirada" selected>Aguardando retirada</option>
                         <option value="Entregue">Entregue ao Usuario</option>
