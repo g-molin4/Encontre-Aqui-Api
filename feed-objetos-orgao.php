@@ -130,6 +130,9 @@ if($user->getNivel()==1 || $user->getNivel()==3){
             });
         });
         console.log('ok2');
+        function openObjeto(id){
+            window.location.href=`altera-objeto&id=${id}`;
+        }
     </script>
 </body>
 
