@@ -29,11 +29,10 @@
             align-items: center;
         }
         .objeto {
-            min-height: 300px;
+            max-height: 300px;
             display: flex !important;
             align-items: flex-start !important;
             list-style: none;
-            border-radius: 14px;
             flex-direction: column;
             align-items: center;
         }
