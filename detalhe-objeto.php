@@ -118,7 +118,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 mb-5 descricao_cad" id="descricao_cad">
                     <label for="descricao" class="form-label ">Descrição:</label>
-                    <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4"><?=$objeto->descricao?></textarea>
+                    <textarea class="descricao form-control" id="descricao" name="descricao" placeholder="Descreva o objeto encontrado" rows="4" disabled><?=$objeto->descricao?></textarea>
                 </div>
             </div>
 
