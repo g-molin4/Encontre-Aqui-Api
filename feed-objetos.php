@@ -116,14 +116,6 @@ if($user->getNivel()==2){
                                     '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
                                     '<p class="card-text">'+result.descricao+'</p>'+
                                 '</div>'+
-                                <?php
-                                if($_SESSION){
-                                    if($user->getNivel()==3){
-                                        // echo'+\'<a href="altera-objeto&id=\'+result.id+\'" class="card-link">Link do card</a>\'+';
-                                        echo'\'<a href="#" class="card-link">Link do card</a>\'+';
-                                    }
-                                }
-                                ?>
                             '</div>'+
                         '</a>';
                         
