@@ -46,7 +46,21 @@
         ?>
 
 		<main class="container wrapper pt-5"  id="cadUsuario">
-            <h1>Dados de Entrega</h1>
+            <div class="w100">
+                <h1>Dados de Entrega</h1>
+                <?php
+                if($_SESSION){
+                    if($user->getNivel()==3){
+                        ?>
+                        <div style="align-items:flex-end;">
+                            <a href="altera-objeto&id=<?=$objeto->id?>"><img src="img/tool.svg" title="Alterar dados de objeto"></a>
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
+            </div>
+            
             <div class="row">
                 <div class="col-lg-4 col-md-12 mb-5 imagemObjeto_cad">
                     <div class="form-group">
