@@ -186,7 +186,7 @@ class Objeto{
             return "Tipo de arquivo não aceito";
         }
     }
-    public static function objetosFeed($tipo,$id=""){
+    public static function objetosFeed($tipo,$id="",$tipoObjeto,$status){
         if($tipo=="o")
             $tipo="orgaoId";
         else if ($tipo=="a")
@@ -196,14 +196,16 @@ class Objeto{
         
         $conn=connectionFactory();
         if(!empty($id)){
-            $stmt=$conn->prepare("SELECT * FROM objeto WHERE $tipo=:$tipo");
+            $stmt=$conn->prepare("SELECT * FROM objeto WHERE $tipo=:$tipo and status=:status and tipoObjetoId like :tipoObjeto");
             $stmt->execute([
-                "$tipo"=>$id
+                "$tipo"=>$id,
+                "status"=>$status,
+                "tipoObjeto"=>"%$tipoObjeto%"
             ]);
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         }
         else{
-            $stmt=$conn->prepare("SELECT * FROM objeto");
+            $stmt=$conn->prepare("SELECT * FROM objeto WHERE status=:status and tipoObjetoId like :tipoObjeto");
             $stmt->execute();
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         }

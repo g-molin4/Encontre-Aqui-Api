@@ -7,11 +7,13 @@ if($_SESSION){
     $usuario=json_decode($_SESSION["usuario"]);
     $tipo=$_GET["a"]??"";
     $id=$_GET["b"]??"";
+    $tipoObjeto=$_GET["t"]??"";
+    $status=$_GET["s"]??"Aguardando retirada";
     // die(json_encode($usuario));
     if($usuario->nivel==2 && empty($tipo) || $usuario->nivel==1 && !empty($tipo) || $usuario->nivel==2 && $usuario->orgaoId != $id){
         die('{"erro":"Você não tem acesso a esse conteúdo"}');
     }
-    $objetos= json_decode(Objeto::objetosFeed($tipo,$id));
+    $objetos= json_decode(Objeto::objetosFeed($tipo,$id,$tipoObjeto,$status));
     for($i=0;$i<count($objetos);$i++){
         $objetos[$i]->orgao=json_decode(json_encode(Orgao::pegaOrgao($objetos[$i]->orgaoId)));
         $objetos[$i]->tipoObjeto=json_decode(json_encode(TiposObjeto::pegaTipoObjeto($objetos[$i]->tipoObjetoId)));

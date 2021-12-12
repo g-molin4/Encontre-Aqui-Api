@@ -55,6 +55,12 @@ include "menu.php";
 if($user->getNivel()==1 || $user->getNivel()==3){
     echo "<script>window.location.href='feedObjetos'</script>";
 }
+if(isset($_GET["tipoObjeto"]) && isset($_GET["status"])){
+    $extrasql="&t={$_GET["tipoObjeto"]}&s={$_GET["status"]}";
+}
+else{
+    $extrasql="";
+}
 ?>
 
 <body>
@@ -110,7 +116,7 @@ if($user->getNivel()==1 || $user->getNivel()==3){
 
     <script>
         $(document).ready(function($) {
-            let urlJson = window.location.origin + "/list_objetos&a=o&b=<?=$user->getOrgaoId()?>";
+            let urlJson = window.location.origin + "/list_objetos&a=o&b=<?=$user->getOrgaoId()?><?=$extrasql?>";
             // let urlJson = window.location.origin + "/list_objetos";
             console.log(urlJson);
 
