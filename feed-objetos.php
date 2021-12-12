@@ -96,13 +96,16 @@ if($user->getNivel()==2){
 
                     var arrayListaObjetos = getResult.map(function(result) {
                         console.log(result);
-                        return '<div class="card mx-auto mb-4" style="width: 18rem;">'+
+                        return '<a href="objeto&id='+result.id+'">'
+                        '<div class="card mx-auto mb-4" style="width: 18rem;">'+
                                 '<img class="card-img-top" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
                                 '<div class="card-body">'+
                                     '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
                                     '<p class="card-text">'+result.descricao+'</p>'+
                                 '</div>'+
-                            '</div>';
+                            '</div>'
+                        '</a>'    ;
+                        
                     });
                     // "<ul id='" + result.id + "'" + "class='listaObjetos mb-4 pl-5 pt-4 pr-5 pb-4'>"+
                     //     "<li class='mt-1 mb-5'> IMAGEM: " + "EM DESENVOLVIMENTO" + "</li>" +
