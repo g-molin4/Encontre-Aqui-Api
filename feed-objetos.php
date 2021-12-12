@@ -103,7 +103,7 @@ if($user->getNivel()==2){
                                     '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
                                     '<p class="card-text">'+result.descricao+'</p>'+
                                 '</div>'+
-                            '</div>'
+                            '</div>'+
                         '</a>';
                         
                     });
