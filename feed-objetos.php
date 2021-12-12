@@ -99,15 +99,14 @@ if($user->getNivel()==2){
 
                     var arrayListaObjetos = getResult.map(function(result) {
                         console.log(result);
-                        return '<div class="card mx-auto mb-4" style="width: 18rem;">'+
-                                '<a href="objeto&id='+result.id+'">'+
-                                    '<img class="card-img-top" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
-                                    '<div class="card-body">'+
-                                        '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
-                                        '<p class="card-text">'+result.descricao+'</p>'+
-                                    '</div>'+
-                                '</a>'+
-                            '</div>';
+                        return '<div class="card mx-auto mb-4" style="width: 18rem;" onclick="openObjeto('+result.id+')">'+
+                                '<img class="card-img-top" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
+                                '<div class="card-body">'+
+                                    '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
+                                    '<p class="card-text">'+result.descricao+'</p>'+
+                                '</div>'+
+                            '</div>'+
+                        '</a>';
                         
                     });
                     // "<ul id='" + result.id + "'" + "class='listaObjetos mb-4 pl-5 pt-4 pr-5 pb-4'>"+
@@ -130,6 +129,9 @@ if($user->getNivel()==2){
             });
         });
         console.log('ok2');
+        function openObjeto(id){
+            window.location.href=`objeto&id=${id}`;
+        }
     </script>
 
     <!-- <script>
