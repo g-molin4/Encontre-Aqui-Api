@@ -120,7 +120,7 @@ if($user->getNivel()==2){
                                 if($_SESSION){
                                     if($user->getNivel()==3){
                                         // echo'+\'<a href="altera-objeto&id=\'+result.id+\'" class="card-link">Link do card</a>\'+';
-                                        echo'+\'<a href="#" class="card-link">Link do card</a>\'+';
+                                        echo'\'<a href="#" class="card-link">Link do card</a>\'+';
                                     }
                                 }
                                 ?>
