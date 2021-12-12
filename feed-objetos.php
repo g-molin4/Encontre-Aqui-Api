@@ -31,6 +31,9 @@
         .listaObjetos a {
             text-decoration: none !important;
         }
+        .pointer {
+            cursor:pointer;
+        }
     </style>
 </head>
 
