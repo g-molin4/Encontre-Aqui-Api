@@ -138,7 +138,7 @@ class Objeto{
         $stmt->execute([
             "objetoId"=>$inputObjetoId
         ]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function removeImagem($inputIdImagem){
         $conn=connectionFactory();

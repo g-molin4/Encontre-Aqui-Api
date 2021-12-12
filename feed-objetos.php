@@ -95,14 +95,23 @@ if($user->getNivel()==2){
                     // var deMunicipio = indice0.deMunicipio;
 
                     var arrayListaObjetos = getResult.map(function(result) {
-                        return "<ul id='" + result.id + "'" + "class='listaObjetos mb-4 pl-5 pt-4 pr-5 pb-4'>" +
-                            "<li class='mt-1 mb-5'> IMAGEM: " + "EM DESENVOLVIMENTO" + "</li>" +
-                            "<li class='mt-1 mb-1 objeto'> Tipo do Objeto: " + result.tipoObjetoId + "</li>" +
-                            "<li class='mt-1 mb-1'> Descrição: " + result.descricao + "</li>" +
-                            "<li class='mt-1 mb-1'> Orgão onde o objeto está localizado: " + result.orgaoId + "</li>" +
-                            "<li class='mt-1 mb-1'> Status: " + result.status + "</li>" +
-                            "</ul>";
+                        return 
+
+                            '<div class="card listaObjetos" style="width: 18rem;">'+
+                                '<img class="card-img-top" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
+                                '<div class="card-body">'+
+                                    '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
+                                    '<p class="card-text">'+result.descricao+'</p>'+
+                                '</div>'+
+                            '</div>';
                     });
+                    // "<ul id='" + result.id + "'" + "class='listaObjetos mb-4 pl-5 pt-4 pr-5 pb-4'>"+
+                    //     "<li class='mt-1 mb-5'> IMAGEM: " + "EM DESENVOLVIMENTO" + "</li>" +
+                    //     "<li class='mt-1 mb-1 objeto'> Tipo do Objeto: " + result.tipoObjetoId + "</li>" +
+                    //     "<li class='mt-1 mb-1'> Descrição: " + result.descricao + "</li>" +
+                    //     "<li class='mt-1 mb-1'> Orgão onde o objeto está localizado: " + result.orgaoId + "</li>" +
+                    //     "<li class='mt-1 mb-1'> Status: " + result.status + "</li>" +
+                    // "</ul>";
 
                     let listaObjetos = document.getElementById("listaObjetos");
 
