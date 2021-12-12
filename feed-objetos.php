@@ -110,7 +110,7 @@ if($user->getNivel()==2){
 
                     var arrayListaObjetos = getResult.map(function(result) {
                         console.log(result);
-                        return '<div class="card mx-auto mb-4 objeto" style="width: 15rem;" onclick="openObjeto('+result.id+')">'+
+                        return '<div class="card mx-auto mb-4 objeto" style="width: 22rem;" onclick="openObjeto('+result.id+')">'+
                                 '<img class="card-img-top" style="max-height:300px" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
                                 '<div class="card-body pointer">'+
                                     '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
