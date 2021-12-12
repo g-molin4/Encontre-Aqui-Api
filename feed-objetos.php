@@ -95,9 +95,8 @@ if($user->getNivel()==2){
                     // var deMunicipio = indice0.deMunicipio;
 
                     var arrayListaObjetos = getResult.map(function(result) {
-                        return 
-
-                            '<div class="card listaObjetos" style="width: 18rem;">'+
+                        console.log(result);
+                        return '<div class="card listaObjetos" style="width: 18rem;">'+
                                 '<img class="card-img-top" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
                                 '<div class="card-body">'+
                                     '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
