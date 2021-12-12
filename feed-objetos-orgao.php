@@ -75,6 +75,11 @@ if($user->getNivel()==1 || $user->getNivel()==3){
                             }
                         ?>
                     </select>
+                    <select class="form-select form-control" id="status" name="status" required>
+                        <option value="" disabled>Selecione uma das opções</option>
+                        <option value="Aguardando retirada" selected>Aguardando retirada</option>
+                        <option value="Entregue">Entregue ao Usuario</option>
+                    </select>
                 </form>
             </div>
         </div>
