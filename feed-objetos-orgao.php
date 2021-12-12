@@ -62,7 +62,7 @@ if($user->getNivel()==1 || $user->getNivel()==3){
 
         <h1 class="titulo_cad_login mt-5 mb-3 pb-5">Feed dos Objetos Perdidos do Orgão</h1>
         <div class="w-100 mb-5">
-            <div class="m-auto">
+            <div class="m-auto d-flex justify-content-around">
                 <form action="feedObjetosOrgao" method="get">
                     <select class="form-select form-control" id="tipoObjeto" name="tipoObjeto" required>
                         <option value="" selected disabled>Selecione uma das opções</option>
