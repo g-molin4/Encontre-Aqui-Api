@@ -46,6 +46,9 @@
 </head>
 
 <?php
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
 $nivelMinimo = 2;
 if($user->getNivel()==1 || $user->getNivel()==3){
     echo "<script>window.location.href='feedObjetos'</script>";
