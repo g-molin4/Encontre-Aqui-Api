@@ -46,7 +46,7 @@
         ?>
 
 		<main class="container wrapper pt-5"  id="cadUsuario">
-            <div class="w100">
+            <div class="w-100 d-flex">
                 <h1>Dados de Entrega</h1>
                 <?php
                 if($_SESSION){
