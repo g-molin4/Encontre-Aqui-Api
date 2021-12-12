@@ -80,7 +80,7 @@ if($user->getNivel()==1 || $user->getNivel()==3){
                         <option value="Aguardando retirada" selected>Aguardando retirada</option>
                         <option value="Entregue">Entregue ao Usuario</option>
                     </select>
-                    <button type="submit">Filtrar</button>
+                    <button type="submit" class="botao">Filtrar</button>
                 </div>
             </form>
         </div>
