@@ -49,7 +49,7 @@
 ini_set('display_errors',1);
 ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
-include_once "Clases/TiposObjeto.php";
+include "Classes/TiposObjeto.php";
 $nivelMinimo = 2;
 include "menu.php";
 if($user->getNivel()==1 || $user->getNivel()==3){
