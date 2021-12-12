@@ -118,7 +118,7 @@ if($user->getNivel()==2){
                                 '</div>'+
                                 <?php
                                 if($_SESSION){
-                                    echo $user->getNivel()==3?'+\'<a href="altera-objeto&id=\'+result.id+\'" class="card-link">Link do card</a>\'':"";
+                                    echo $user->getNivel()==3?'+\'<a href="altera-objeto&id=\'+result.id+\'" class="card-link">Link do card</a>\'+':"";
                                 }
                                 ?>
                             '</div>'+
