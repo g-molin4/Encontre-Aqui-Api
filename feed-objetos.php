@@ -101,7 +101,7 @@ if($user->getNivel()==2){
                         console.log(result);
                         return '<div class="card mx-auto mb-4" style="width: 18rem;" onclick="openObjeto('+result.id+')">'+
                                 '<img class="card-img-top" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
-                                '<div class="card-body">'+
+                                '<div class="card-body pointer">'+
                                     '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
                                     '<p class="card-text">'+result.descricao+'</p>'+
                                 '</div>'+
