@@ -124,7 +124,7 @@ if($user->getNivel()==2){
 
                     arrayListaObjetos.map(arrayListaObjetos => {
                         var divListaObjetos = document.createElement("div");
-                        divListaObjetos.classList.add("col-6");
+                        divListaObjetos.classList.add("col-4");
                         listaObjetos.appendChild(divListaObjetos);
                         divListaObjetos.innerHTML = arrayListaObjetos;
                     })
