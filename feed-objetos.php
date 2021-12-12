@@ -28,6 +28,15 @@
             flex-direction: column;
             align-items: center;
         }
+        .objeto {
+            min-height: 300px;
+            display: flex !important;
+            align-items: flex-start !important;
+            list-style: none;
+            border-radius: 14px;
+            flex-direction: column;
+            align-items: center;
+        }
         .listaObjetos a {
             text-decoration: none !important;
         }
@@ -102,7 +111,7 @@ if($user->getNivel()==2){
 
                     var arrayListaObjetos = getResult.map(function(result) {
                         console.log(result);
-                        return '<div class="card mx-auto mb-4" style="width: 18rem;" onclick="openObjeto('+result.id+')">'+
+                        return '<div class="card mx-auto mb-4 objeto" style="width: 18rem;" onclick="openObjeto('+result.id+')">'+
                                 '<img class="card-img-top" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
                                 '<div class="card-body pointer">'+
                                     '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
