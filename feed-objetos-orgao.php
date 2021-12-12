@@ -49,6 +49,7 @@
 ini_set('display_errors',1);
 ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
+include_once "Clases/TipoObjeto.php";
 $nivelMinimo = 2;
 include "menu.php";
 if($user->getNivel()==1 || $user->getNivel()==3){
@@ -60,7 +61,23 @@ if($user->getNivel()==1 || $user->getNivel()==3){
     <main class="container wrapper pt-3" id="listaObjetosPerdidos">
 
         <h1 class="titulo_cad_login mt-5 mb-3 pb-5">Feed dos Objetos Perdidos do Orgão</h1>
-
+        <div class="w-100">
+            <div class="m-auto">
+                <form action="feedObjetosOrgao" method="get">
+                    <select class="form-select form-control" id="tipoObjeto" name="tipoObjeto" required>
+                        <option value="" selected disabled>Selecione uma das opções</option>
+                        <?php
+                            $objetos=TiposObjeto::pegaTiposObjeto();
+                            foreach($objetos as $objeto){
+                                ?>
+                                <option value="<?=$objeto["id"]?>"><?=$objeto["tipo"]?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                </form>
+            </div>
+        </div>
         <div id="listaObjetos" class="row">
         </div>
     </main>
