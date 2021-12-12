@@ -28,11 +28,28 @@
             flex-direction: column;
             align-items: center;
         }
+        .objeto {
+            max-height: 400px;
+            display: flex !important;
+            align-items: flex-start !important;
+            list-style: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        .listaObjetos a {
+            text-decoration: none !important;
+        }
+        .pointer {
+            cursor:pointer;
+        }
     </style>
 </head>
 
 <?php
 $nivelMinimo = 2;
+if($user->getNivel()==1 || $user->getNivel()==3){
+    echo "<script>window.location.href='feedObjetos'</script>";
+}
 include "menu.php";
 ?>
 
@@ -86,13 +103,16 @@ include "menu.php";
                     // var deMunicipio = indice0.deMunicipio;
 
                     var arrayListaObjetos = getResult.map(function(result) {
-                        return "<ul id='" + result.id + "'" + "class='listaObjetos mb-4 pl-5 pt-4 pr-5 pb-4'>" +
-                            "<li class='mt-1 mb-5'> IMAGEM: " + "EM DESENVOLVIMENTO" + "</li>" +
-                            "<li class='mt-1 mb-1 objeto'> Tipo do Objeto: " + result.tipoObjetoId + "</li>" +
-                            "<li class='mt-1 mb-1'> Descrição: " + result.descricao + "</li>" +
-                            "<li class='mt-1 mb-1'> Orgão onde o objeto está localizado: " + result.orgaoId + "</li>" +
-                            "<li class='mt-1 mb-1'> Status: " + result.status + "</li>" +
-                            "</ul>";
+                        console.log(result);
+                        return '<div class="card mx-auto mb-4 objeto" style="width: 22rem;" onclick="openObjeto('+result.id+')">'+
+                                '<img class="card-img-top" style="width: 100%;height: 15vw;object-fit: cover;" src="'+result.imagem.diretorio+'" alt="Imagem de capa do card">'+
+                                '<div class="card-body pointer">'+
+                                    '<h5 class="card-title">'+result.tipoObjeto.tipo+'</h5>'+
+                                    '<p class="card-text">'+result.descricao+'</p>'+
+                                '</div>'+
+                            '</div>'+
+                        '</a>';
+                        
                     });
 
                     let listaObjetos = document.getElementById("listaObjetos");
