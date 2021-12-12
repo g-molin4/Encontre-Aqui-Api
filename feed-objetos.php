@@ -64,7 +64,7 @@ if($user->getNivel()==2){
             <button type="button" onclick="filtrar()">Filtrar</button>
         </div> -->
 
-        <div id="listaObjetos" class="row">
+        <div id="listaObjetos" class="row" style="align-items:baseline !important">
         </div>
     </main>
 
