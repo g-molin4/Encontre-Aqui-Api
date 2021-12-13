@@ -9,6 +9,10 @@ if($_SESSION){
     $id=$_GET["b"]??"";
     $tipoObjeto=$_GET["t"]??"";
     $status=$_GET["s"]??"Aguardando retirada";
+    
+    ini_set('display_errors',1);
+    ini_set('display_startup_erros',1);
+    error_reporting(E_ALL);
     // die(json_encode($usuario));
     if($usuario->nivel==2 && empty($tipo) || $usuario->nivel==1 && !empty($tipo) || $usuario->nivel==2 && $usuario->orgaoId != $id){
         die('{"erro":"Você não tem acesso a esse conteúdo"}');
