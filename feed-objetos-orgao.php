@@ -68,27 +68,25 @@ else{
 
         <h1 class="titulo_cad_login mt-5 mb-3 pb-5">Feed dos Objetos Perdidos do Orgão</h1>
         <div class="w-100 mb-5">
-            <form action="feedObjetosOrgao" method="get">
-                <div class="m-auto d-flex justify-content-around">
-                    <select class="form-select form-control mx-3 my-auto" id="tipoObjeto" name="tipoObjeto" required>
-                        <option value="" selected disabled>Selecione uma das opções</option>
-                        <?php
-                            $objetos=TiposObjeto::pegaTiposObjeto();
-                            foreach($objetos as $objeto){
-                                ?>
-                                <option value="<?=$objeto["id"]?>"><?=$objeto["tipo"]?></option>
-                                <?php
-                            }
-                        ?>
-                    </select>
-                    <select class="form-select form-control mx-3 my-auto" id="status" name="status" required>
-                        <option value="" disabled>Selecione uma das opções</option>
-                        <option value="Aguardando retirada" selected>Aguardando retirada</option>
-                        <option value="Entregue">Entregue ao Usuario</option>
-                    </select>
-                    <button type="submit" class="botao">Filtrar</button>
-                </div>
-            </form>
+            <div class="m-auto d-flex justify-content-around">
+                <select class="form-select form-control mx-3 my-auto" id="tipoObjeto" name="tipoObjeto" required>
+                    <option value="" selected disabled>Selecione uma das opções</option>
+                    <?php
+                        $objetos=TiposObjeto::pegaTiposObjeto();
+                        foreach($objetos as $objeto){
+                            ?>
+                            <option value="<?=$objeto["id"]?>"><?=$objeto["tipo"]?></option>
+                            <?php
+                        }
+                    ?>
+                </select>
+                <select class="form-select form-control mx-3 my-auto" id="status" name="status" required>
+                    <option value="" disabled>Selecione uma das opções</option>
+                    <option value="Aguardando retirada" selected>Aguardando retirada</option>
+                    <option value="Entregue">Entregue ao Usuario</option>
+                </select>
+                <button type="button" class="botao" id="botaoFiltro">Filtrar</button>
+            </div>
         </div>
         <div id="listaObjetos" class="row">
         </div>
@@ -155,6 +153,11 @@ else{
                         listaObjetos.appendChild(divListaObjetos);
                         divListaObjetos.innerHTML = arrayListaObjetos;
                     })
+                    $("#botaoFiltro").click(function(){
+                        let tipoObjeto=$("#tipoObjeto").val();
+                        let status=$("#status").val();
+                        window.location.href=`feedObjetosOrgao&tipoObjeto=${tipoObjeto}&status=${status}`;
+                    });
                 }
             });
         });
