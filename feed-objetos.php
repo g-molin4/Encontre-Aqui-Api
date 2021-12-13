@@ -117,7 +117,7 @@ else{
 
     <script>
         $(document).ready(function($) {
-            let urlJson = window.location.origin + "/list_objetos";
+            let urlJson = window.location.origin + "/list_objetos<?=$extrasql?>";
             // let urlJson = window.location.origin + "/list_objetos";
             console.log(urlJson);
 
