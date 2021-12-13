@@ -169,7 +169,7 @@ else{
                         if(tipoObjeto==""){
                             alert("Selecione um tipo de objeto");
                         }else{
-                            window.location.href=`feedObjetosOrgao&tipoObjeto=${tipoObjeto}&status=${status}`;
+                            window.location.href=`feedObjetos&tipoObjeto=${tipoObjeto}&status=${status}`;
                         }
                     });
                 }
