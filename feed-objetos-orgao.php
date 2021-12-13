@@ -156,7 +156,11 @@ else{
                     $("#botaoFiltro").click(function(){
                         let tipoObjeto=$("#tipoObjeto").val();
                         let status=$("#status").val();
-                        window.location.href=`feedObjetosOrgao&tipoObjeto=${tipoObjeto}&status=${status}`;
+                        if(tipoObjeto==""){
+                            alert("Selecione um tipo de objeto");
+                        }else{
+                            window.location.href=`feedObjetosOrgao&tipoObjeto=${tipoObjeto}&status=${status}`;
+                        }
                     });
                 }
             });
