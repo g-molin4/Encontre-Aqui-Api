@@ -62,7 +62,6 @@ else{
 
 <body>
     <main class="container wrapper pt-3" id="listaObjetosPerdidos">
-
         <h1 class="titulo_cad_login mt-5 mb-3 pb-5">Feed dos Objetos Perdidos</h1>
         <div class="w-100 mb-5">
             <div class="m-auto d-flex justify-content-around">
