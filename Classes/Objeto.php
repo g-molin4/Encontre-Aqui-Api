@@ -206,7 +206,10 @@ class Objeto{
         }
         else{
             $stmt=$conn->prepare("SELECT * FROM objeto WHERE status=:status and tipoObjetoId like :tipoObjeto");
-            $stmt->execute();
+            $stmt->execute([
+                "status"=>$status,
+                "tipoObjeto"=>"%$tipoObjeto%"
+            ]);
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         }
     }
