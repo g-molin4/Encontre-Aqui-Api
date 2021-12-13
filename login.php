@@ -33,7 +33,7 @@ $nivelMinimo=0;
                     $_SESSION["usuario"]=json_encode($row);
                     // echo "<script> alert('".$_SESSION["email"]."')</script>";
                     if($row["nivel"]==1)
-                        header("Location: feed");
+                        header("Location: feedObjetos");
                     else if ($row["nivel"]==2)
                         header("Location: cadastro-objeto");
                     else if ($row["nivel"]==3)
