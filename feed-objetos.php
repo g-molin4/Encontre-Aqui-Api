@@ -52,6 +52,12 @@ include "menu.php";
 if($user->getNivel()==2){
     echo "<script>window.location.href='feedObjetosOrgao'</script>";
 }
+if(isset($_GET["tipoObjeto"]) && isset($_GET["status"])){
+    $extrasql="&t={$_GET["tipoObjeto"]}&s={$_GET["status"]}";
+}
+else{
+    $extrasql="";
+}
 ?>
 
 <body>
@@ -161,7 +167,7 @@ if($user->getNivel()==2){
                     $("#botaoFiltro").click(function(){
                         let tipoObjeto=$("#tipoObjeto").val();
                         let status=$("#status").val();
-                        window.location.href=`feedObjetosOrgao&tipoObjeto=${tipoObjeto}&status=${status}`;
+                        window.location.href=`feedObjetos&tipoObjeto=${tipoObjeto}&status=${status}`;
                     });
                 }
             });
