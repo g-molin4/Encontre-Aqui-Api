@@ -99,8 +99,8 @@
                 </div>
     
                 <div class="col-lg-4 col-md-12 mb-5 descricao_cad">
-                    <label for="descricao" class="form-label ">Endereço:</label>
-                    <div class="border text-center p-1"><?=$objeto->orgao->endereco?></div>
+                    <label for="descricao" class="form-label ">Endereço/Nº:</label>
+                    <div class="border text-center p-1"><?=$objeto->orgao->endereco?>/ <?=$objeto->orgao->enderecoNumero?></div>
                 </div>
             </div>
             <h1>Dados do Objeto</h1>
