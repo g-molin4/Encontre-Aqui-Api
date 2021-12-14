@@ -95,7 +95,7 @@ class Orgao {
             "enderecoNumero"=>$enredecoNumero
         ]);
         $userId=$conn->lastInsertId();
-        $stmt2=$conn->prepare("INSERT INTO orgao(nome,cnpj,email,telefone,cep,bairro,endereco,userId) values (:nome,:cnpj,:email,:telefone,:cep,:bairro,:endereco,:userId)");
+        $stmt2=$conn->prepare("INSERT INTO orgao(nome,cnpj,email,telefone,cep,bairro,endereco,userId,enderecoNumero) values (:nome,:cnpj,:email,:telefone,:cep,:bairro,:endereco,:userId,:enderecoNumero)");
         $stmt2->execute([
             "nome"=>$nome,
             "cnpj"=>$cnpj,
@@ -105,6 +105,7 @@ class Orgao {
             "bairro"=>$bairro,
             "endereco"=>$endereco,
             "userId"=>$userId,
+            "enderecoNumero"=>$enredecoNumero
         ]);
         $orgaoId=$conn->lastInsertId();
         $stmt3=$conn->prepare("UPDATE usuario SET orgaoId=:orgaoId WHERE id=:userId");
