@@ -30,7 +30,7 @@
 				<div class="col-6">
 					<div class="col-12 pl-5 mt-2">
 						<h1 class="titulo_principal">Perdeu seu objeto pessoal? <br> Encontre aqui !</h1>
-						<h6 class="titulo_complementar mt-4">Nossa plataforma conecta o objeto perdido com seu respectivo dono. <br>Disponibilizamos uma lista de objetos que já foram encontrados. <br> Você tem até 3 meses para retirar no local indicado. Você deve estar com um documento com foto em mãos</h6>
+						<h6 class="titulo_complementar mt-4">Nossa plataforma conecta o objeto perdido com seu respectivo dono. <br>Disponibilizamos uma lista de objetos que já foram encontrados. <br> Você tem até 3 meses para retirar no local indicado. Você deve estar <br> com um documento com foto em mãos</h6>
 					</div>
 					<div class="col-12 pl-5">
 						<button type="button" class="mt-4 botao" id="botao-principal">Encontre aqui</button>
