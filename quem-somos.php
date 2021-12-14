@@ -9,6 +9,9 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
 
         <!-- Custom CSS -->
 		<link rel="stylesheet" href="css/index.css" />
@@ -31,9 +34,14 @@
                 <p>Clique no botão abaixo para ver os objetos perdidos na sua região.</p>
             </div>
 
-            <button type="button" class="mt-4 botao">Visualizar Objetos</button>
+            <button type="button" class="mt-4 botao" id="botao-principal">Visualizar Objetos</button>
 		</main>
 
+		<script>
+			$("#botao-principal").click(function(){
+				window.location.href='<?=$_SESSION?"feedObjetos":"login"?>'
+			});
+		</script>
 		<footer id="footerPage" class="fixed-bottom pt-3 pb-1 mt-5">
 			<p class="text-center mb-2">Projeto desenvolvido como Trabalho de Conclusão de Curso na Universidade Candido Mendes (UCAM) em 2021</p>
 			<div class="text-center mt-3 mb-1 version">v. 202111112235</div>
@@ -41,9 +49,6 @@
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 		crossorigin="anonymous"></script>
