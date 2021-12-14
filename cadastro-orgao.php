@@ -172,7 +172,7 @@
                 </div>
                 <div class="divValidacaoSenha mb-2"></div>
                 <div class="btn_cad form-group mb-5 pb-5 col-lg-12">
-                    <button type="submit" class="text-uppercase mr-3 botao" id="botaoEnv">Enviar</button>
+                    <button type="button" class="text-uppercase mr-3 botao" id="botaoEnv">Enviar</button>
                     <!-- <button type="reset" class="text-uppercase ml-3 botao">Cancelar</button> -->
                     <button type="button" class="text-uppercase ml-3 botao" id="but-voltar">Voltar</button>
                 </div>

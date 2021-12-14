@@ -175,7 +175,7 @@ $("#botaoEnv").click(function(){
             if(!("erro" in dados)){
                 $(".divValidacaoSenha").html("")
     
-                $("#form-usuario").submit()
+                $("#form-orgao").submit()
                 
             }
             else{
