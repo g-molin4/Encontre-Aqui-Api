@@ -41,24 +41,52 @@ else{
             }
             ?>
             <?=$_SESSION?'<a class="mr-3" href="feedObjetos'.$extraOrgao.'">Objetos Perdidos</a>':'<a class="mr-3" href="login">Login</a>'?>
-            <div class="dropdown drop-item mr-2">
-                <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  id="dropdownMenuLink2">
-                    Cadastrar
-                </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                        <?php
-                        if($_SESSION){
-                            if($user->getNivel()>=2){
-                        ?>
-                                <a class="dropdown-item pl-4 icon_contraste" href="cadastro-objeto"><img src="img/book.svg" alt="icone Contraste" class="mr-2" />Objeto</a>
-                        <?php
-                            }
-                        }
-                        ?>
-                        <a class="dropdown-item pl-4 icon_contraste" href="cadastro"><img src="img/user-plus.svg" alt="icone Contraste" class="mr-2" />Usuario</a>
-                        <a class="dropdown-item pl-4 icon_contraste" href="cadastro-orgao"><img src="img/shopping-bag.svg" alt="icone Contraste" class="mr-2" />Orgão</a>
+            <?php
+            if($_SESSION){
+                if($user->getNivel()>1){
+                    ?>
+                    <div class="dropdown drop-item mr-2">
+                        <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  id="dropdownMenuLink2">
+                            Cadastrar
+                        </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                                <?php
+                                if($_SESSION){
+                                    if($user->getNivel()==2){
+                                ?>
+                                        <a class="dropdown-item pl-4 icon_contraste" href="cadastro-objeto"><img src="img/book.svg" alt="icone Contraste" class="mr-2" />Objeto</a>
+                                        <a class="dropdown-item pl-4 icon_contraste" href="cadastro"><img src="img/user-plus.svg" alt="icone Contraste" class="mr-2" />Usuario</a>
+                                <?php
+                                    }
+                                    else if($user->getNivel==3){
+                                        ?>
+                                        <a class="dropdown-item pl-4 icon_contraste" href="cadastro-orgao"><img src="img/shopping-bag.svg" alt="icone Contraste" class="mr-2" />Orgão</a>
+                                        <a class="dropdown-item pl-4 icon_contraste" href="cadastro"><img src="img/user-plus.svg" alt="icone Contraste" class="mr-2" />Usuario</a>
+
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
                     </div>
-            </div>
+                    <?php
+                }
+
+            }
+            else{
+            ?>
+                <div class="dropdown drop-item mr-2">
+                    <a class="nav-link dropdown-toggle drop-item-link pl-0" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  id="dropdownMenuLink2">
+                        Cadastrar
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                            <a class="dropdown-item pl-4 icon_contraste" href="cadastro"><img src="img/user-plus.svg" alt="icone Contraste" class="mr-2" />Usuario</a>
+                            <a class="dropdown-item pl-4 icon_contraste" href="cadastro-orgao"><img src="img/shopping-bag.svg" alt="icone Contraste" class="mr-2" />Orgão</a>
+                        </div>
+                </div>
+            <?php
+            }
+            ?>
             <a class="mr-3" href="quem-somos">Quem Somos</a>
             <a class="mr-3" href="fale-conosco">Fale Conosco</a>
             
