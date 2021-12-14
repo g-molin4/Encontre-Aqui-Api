@@ -58,7 +58,7 @@ else{
                                         <a class="dropdown-item pl-4 icon_contraste" href="cadastro"><img src="img/user-plus.svg" alt="icone Contraste" class="mr-2" />Usuario</a>
                                 <?php
                                     }
-                                    else if($user->getNivel==3){
+                                    else if($user->getNivel()==3){
                                         ?>
                                         <a class="dropdown-item pl-4 icon_contraste" href="cadastro-orgao"><img src="img/shopping-bag.svg" alt="icone Contraste" class="mr-2" />Orgão</a>
                                         <a class="dropdown-item pl-4 icon_contraste" href="cadastro"><img src="img/user-plus.svg" alt="icone Contraste" class="mr-2" />Usuario</a>
