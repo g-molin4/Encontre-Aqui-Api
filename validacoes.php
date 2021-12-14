@@ -157,11 +157,18 @@ if(isset($_GET["a"])){
     }
     else if($_GET["a"]=="cnpj"){
         $validacao=validaCnpjRepetido($_GET["v"]);
-        if($validacao===true){
+        $validacao2=validaEmailRepetido($_GET["v2"]);
+        if($validacao===true && $validacao2===true){
             echo '{"retorno":"valido"}';
         }
-        else{
+        else if ($validacao!==true && $validacao2===true){
             echo '{"erro":"'.$validacao.'"}';
+        }
+        else if($validacao===true && $validacao2!==true){
+            echo '{"erro":"'.$validacao2.'"}';
+        }
+        else{
+            echo '{"erro":"'.$validacao.' & '.$validacao2.'"}';
         }
     }
 }
