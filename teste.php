@@ -1,40 +1,32 @@
 <?php
-$to = "gabriel.mw3.gm@gmail.com";
-$subject = "faleconosco@encontreaqui.tech";
+use PHPMailer\PHPMailer\PHPMailer;
 
-$message = "
-<html>
-<head>
-<title>HTML email</title>
-</head>
-<body>
-<p>This email contains HTML Tags!</p>
-<table>
-<tr>
-<th>Firstname</th>
-<th>Lastname</th>
-</tr>
-<tr>
-<td>John</td>
-<td>Doe</td>
-</tr>
-</table>
-</body>
-</html>
-";
+require 'vendor/autoload.php';
 
-// Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+$mail= new PHPMailer();
+$mail->isSMTP();
+$mail->Host = 'smtp.hostinger.com';
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = 'tls';
+$mail->Username = 'faleconosco@encontreaqui.tech';
+$mail->Password = 'Encontreaqui@1';
+$mail->CharSet = "utf-8";
+$mail->Port = 465;
+$mail->Encoding = 'base64';
 
-// More headers
-$headers .= 'From: <Fale Conosco | Encontre Aqui>' . "\r\n";
-$headers .= 'Cc: myboss@example.com' . "\r\n";
+$mail->setFrom('faleconosco@encontreaqui.tech', "Mail | EncontreAqui");
+$mail->isHTML(true);
+$mail->Subject = 'Encontre Aqui';
+$mail->Body= 'Este é o conteúdo da mensagem em <b>HTML!</b>';
+$mail->AltBody = 'Para visualizar essa mensagem acesse http://site.com.br/mail';
+$mail->addAddress('gabriel.mw3.gm@gmail.com');
 
-if(mail($to,$subject,$message,$headers)){
-    echo "enviado";
+if(!$mail->send()) {
+    echo 'Não foi possível enviar a mensagem.<br>';
+    echo 'Erro: ' . $mail->ErrorInfo;
+} else {
+    echo 'Mensagem enviada.';
 }
-else{
-    echo "nao enviado";
-}
+
+
 ?>
