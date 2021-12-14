@@ -85,12 +85,24 @@ function validaCnpjRepetido($cnpj){
     $cnpj=str_replace("/","",str_replace("-","",str_replace(".","",$cnpj)));
     if(validar_cnpj($cnpj)===true){
         if(Orgao::verificaCnpjRepetido($cnpj)===true)
-            return "Este CNPJ já possui um cadastro";
+        return "Este CNPJ já possui um cadastro";
+        else
+        return true;
+    }
+    else{
+        return "Favor informar um CNPJ válido";
+    }
+}
+function validaEmailRepetido($email){
+    $email=trim($email);
+    if(filter_var($email,FILTER_VALIDATE_EMAIL)!==false){
+        if(Usuario::verificaEmailRepetido($email)===true)
+            return "Este Email já possui um cadastro";
         else
             return true;
     }
     else{
-        return "Favor informar um CNPJ válido";
+        return "Favor informar um Email válido";
     }
 }
 
@@ -128,11 +140,18 @@ function validaSenha($inputSenha){
 if(isset($_GET["a"])){
     if($_GET["a"]=="cpf"){
         $validacao=validaCpfRepetido($_GET["v"]);
-        if($validacao===true){
+        $validacao2=validaEmailRepetido($_GET["v2"]);
+        if($validacao===true && $validacao2===true){
             echo '{"retorno":"valido"}';
         }
-        else{
+        else if ($validacao!==true && $validacao2===true){
             echo '{"erro":"'.$validacao.'"}';
+        }
+        else if($validacao===true && $validacao2!==true){
+            echo '{"erro":"'.$validacao2.'"}';
+        }
+        else{
+            echo '{"erro":"'.$validacao.' & '.$validacao2.'"}';
         }
         
     }

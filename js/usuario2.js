@@ -145,9 +145,10 @@ $("#cep").blur(function() {
 
 $("#botaoEnvForm").click(function(){
     let cpf= $("#cpf").val()
+    let email=$("#email").val()
     
     try{
-        $.getJSON(`http://encontreaqui.tech/validacao&a=cpf&v=${cpf}`, function(dados){
+        $.getJSON(`http://encontreaqui.tech/validacao&a=cpf&v=${cpf}&v2=${email}`, function(dados){
             if(!("erro" in dados)){
                 $(".divValidacaoSenha").html("")
 

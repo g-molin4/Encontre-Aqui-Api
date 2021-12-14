@@ -1,3 +1,3 @@
 <?php
-var_dump(fopen("teste/teste","r")); 
+var_dump();
 ?>

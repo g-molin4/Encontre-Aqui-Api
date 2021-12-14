@@ -180,6 +180,19 @@ class Usuario{
         else
             return false; //não é repetido
     }
+    public static function verificaEmailRepetido($email){
+        $conn=connectionFactory();
+        $stmt=$conn->prepare("SELECT * FROM usuario where email=:email");
+        $stmt->execute([
+            "email"=>$email
+        ]);
+        $countRows=count($stmt->fetchAll());
+
+        if($countRows>0)
+            return true; //é repetido
+        else
+            return false; //não é repetido
+    }
     public static function gerarTokenSenha($email){
         $conn=connectionFactory();
         $stmt=$conn->prepare("SELECT id FROM usuario WHERE email=:email");
