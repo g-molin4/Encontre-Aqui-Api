@@ -31,5 +31,10 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= 'From: <Fale Conosco | Encontre Aqui>' . "\r\n";
 $headers .= 'Cc: myboss@example.com' . "\r\n";
 
-mail($to,$subject,$message,$headers);
+if(mail($to,$subject,$message,$headers)){
+    echo "enviado";
+}
+else{
+    echo "nao enviado";
+}
 ?>
