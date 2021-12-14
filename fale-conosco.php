@@ -25,7 +25,8 @@
             extract($_POST);
             if(!empty($email)){
                 $envioEmail=enviaEmail($mensagem,$email,$nome,$telefone);
-                if($email){
+                // die(var_dump($envioEmail));
+                if($envioEmail===true){
                     echo "<script>alert('Sua mensagem foi enviada, fique atento em seu email.')</script>";
                     // echo "<script>window.location.href='$principal'</script>";
                 }else{
@@ -36,7 +37,7 @@
         ?>
 		<main class="container pt-5"  id="faleConosco">
             <h1>Fale Conosco</h1>
-            <form method="POST" action="fale-conosco" enctype="text/plain" id="form-fale-conosco" class="form-fale-conosco mt-5">
+            <form method="POST" action="fale-conosco"  id="form-fale-conosco" class="form-fale-conosco mt-5">
                 <div class="row">
                     <div class="col-lg-4 col-md-12 mb-5 nome_usuario_cad">
                         <label for="nome" class="form-label campo_obrigatorio">Nome Completo</label>
