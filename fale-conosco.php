@@ -21,6 +21,17 @@
         $nivelMinimo=0;
         include "envioEmail.php";
         include_once "menu.php";
+        if($_POST){
+            extract($_POST);
+            $destino=$email;
+            $envioEmail=enviaEmail($mensagem,$email,$nome,$telefone);
+            if($email){
+                echo "<script>alert('Sua mensagem foi enviada, fique atento em seu email.')</script>";
+                echo "<script>window.location.href='$principal'</script>";
+            }else{
+                echo "<script>alert('$envioEmail')</script>";
+            }
+        }
         ?>
 		<main class="container pt-5"  id="faleConosco">
             <h1>Fale Conosco</h1>
@@ -57,7 +68,7 @@
                             id="telefone"
                             name="telefone"
                             maxlength="15"
-                            placeholder="(00) 000000000"
+                            placeholder="(00) 00000-0000"
                         />
                     </div>
                 </div>

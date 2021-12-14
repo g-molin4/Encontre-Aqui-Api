@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 require 'vendor/autoload.php';
 
-function enviaEmail($mensagem,$destino,$nome,$contato){
+function enviaEmail($mensagem,$destino,$nome,$telefone){
     $mail= new PHPMailer();
     $mail->isSMTP();
     $mail->Host = 'smtp.hostinger.com';
@@ -18,7 +18,7 @@ function enviaEmail($mensagem,$destino,$nome,$contato){
     $mail->setFrom('faleconosco@encontreaqui.tech', "Mail | EncontreAqui");
     $mail->isHTML(true);
     $mail->Subject = 'Fale Conosco | Encontre Aqui';
-    $mail->Body= 'Responder para: '.$destino.'<br>Nome: '.$nome. '<br>Contato:'.$contato."<br>Mensagem: $mensagem" ;
+    $mail->Body= 'Responder para: '.$destino.'<br>Nome: '.$nome. '<br>Contato:'.$telefone."<br>Mensagem: $mensagem" ;
     $mail->AltBody = 'EncontreAqui!';
     $mail->addAddress('gabriel.mw3.gm@gmail.com');
 
