@@ -80,9 +80,9 @@ class Orgao {
         $this->_userId=$UserId;
     }
 
-    public static function cadastraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$endereco,$senha){
+    public static function cadastraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$endereco,$senha,$enredecoNumero){
         $conn= connectionFactory();
-        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cep,bairro,telefone,endereco,nome,nivel) values(:email,:senha,:cep,:bairro,:telefone,:endereco,:nome,:nivel)");
+        $stmt= $conn->prepare("INSERT INTO usuario (email,senha,cep,bairro,telefone,endereco,nome,nivel,enderecoNumero) values(:email,:senha,:cep,:bairro,:telefone,:endereco,:nome,:nivel,:enderecoNumero)");
         $stmt->execute([
             "email"=>$email,
             "senha"=>$senha,
@@ -91,7 +91,8 @@ class Orgao {
             "telefone"=>$telefone,
             "endereco"=>$endereco,
             "nome"=>$nome,
-            "nivel"=>2
+            "nivel"=>2,
+            "enderecoNumero"=>$enredecoNumero
         ]);
         $userId=$conn->lastInsertId();
         $stmt2=$conn->prepare("INSERT INTO orgao(nome,cnpj,email,telefone,cep,bairro,endereco,userId) values (:nome,:cnpj,:email,:telefone,:cep,:bairro,:endereco,:userId)");

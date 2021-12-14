@@ -38,7 +38,7 @@
             $cnpj=str_replace("/","",str_replace("-","",str_replace(".","",$cnpj)));
             $telefone=str_replace("-","",str_replace(" ","",str_replace("(","",str_replace(")","",$telefone))));
             $cep=str_replace("-","",$cep);
-            Orgao::cadastraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$endereco,$senha);
+            Orgao::cadastraOrgao($nome,$cnpj,$email,$telefone,$cep,$bairro,$endereco,$senha,$enderecoNumero);
             echo '<script>alert("Orgão inserido")</script>';
         }
         ?>
@@ -145,15 +145,29 @@
                         />
                     </div>
                     <div class="col-lg-4 col-md-12 mb-5 campo_obrigatório">
-                        <label for="endereco" class="form-label campo_obrigatorio">Endereço</label>
-                        <input
-                            type="text"
-                            class="endereco form-control"
-                            id="endereco"
-                            name="endereco"
-                            placeholder="Digite seu endereco"
-                            required
-                        />
+                        <label for="endereco" class="form-label campo_obrigatorio">Endereço/Nº</label>
+                        <div class="d-flex">
+                            <input
+                                type="text"
+                                class="endereco form-control"
+                                id="endereco"
+                                name="endereco"
+                                placeholder="Digite seu endereco"
+                                required
+                            />
+                            <input
+                                type="text"
+                                class="enderecoNumero"
+                                id="enderecoNumero"
+                                name="enderecoNumero"
+                                placeholder="Nº"
+                                style="border: 2px solid; border-radius: 0.25rem;"
+                                size="4"
+                                maxlength="4"
+                                required
+                            />
+
+                        </div>
                     </div>
                 </div>
                 <div class="divValidacaoSenha mb-2"></div>
