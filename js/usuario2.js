@@ -168,7 +168,7 @@ $("#botaoEnvForm").click(function(){
 });
 
 $("#botaoEnv").click(function(){
-    let cnpj= $("#cnpj").val()
+    let cnpj= $("#cnpj").val().replace(/[^0-9]/g,'')
     let email=$("#email").val()
     try{
         $.getJSON(`http://encontreaqui.tech/validacao&a=cnpj&v=${cnpj}&v2=${email}`, function(dados){
