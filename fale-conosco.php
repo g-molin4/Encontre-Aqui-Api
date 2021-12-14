@@ -23,13 +23,14 @@
         include_once "menu.php";
         if($_POST){
             extract($_POST);
-            $destino=$email;
-            $envioEmail=enviaEmail($mensagem,$email,$nome,$telefone);
-            if($email){
-                echo "<script>alert('Sua mensagem foi enviada, fique atento em seu email.')</script>";
-                echo "<script>window.location.href='$principal'</script>";
-            }else{
-                echo "<script>alert('$envioEmail')</script>";
+            if(!empty($email)){
+                $envioEmail=enviaEmail($mensagem,$email,$nome,$telefone);
+                if($email){
+                    echo "<script>alert('Sua mensagem foi enviada, fique atento em seu email.')</script>";
+                    // echo "<script>window.location.href='$principal'</script>";
+                }else{
+                    echo "<script>alert('$envioEmail')</script>";
+                }
             }
         }
         ?>
@@ -46,6 +47,7 @@
                             name="nome"
                             placeholder="Digite o seu nome completo"
                             autofocus
+                            required
                         />
                     </div>
 
@@ -57,6 +59,7 @@
                             id="email"
                             name="email"
                             placeholder="Digite o seu email"
+                            required
                         />
                     </div>
 
@@ -69,6 +72,7 @@
                             name="telefone"
                             maxlength="15"
                             placeholder="(00) 00000-0000"
+                            required
                         />
                     </div>
                 </div>
