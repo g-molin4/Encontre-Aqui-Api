@@ -7,7 +7,6 @@ $mail= new PHPMailer();
 $mail->isSMTP();
 $mail->Host = 'smtp.hostinger.com';
 $mail->SMTPAuth = true;
-$mail->SMTPSecure = 'tls';
 $mail->Username = 'faleconosco@encontreaqui.tech';
 $mail->Password = 'Encontreaqui@1';
 $mail->CharSet = "utf-8";
