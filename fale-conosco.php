@@ -36,7 +36,7 @@
         ?>
 		<main class="container pt-5"  id="faleConosco">
             <h1>Fale Conosco</h1>
-            <form method="POST" action="fale_conosco" enctype="text/plain" id="form-fale-conosco" class="form-fale-conosco mt-5">
+            <form method="POST" action="fale-conosco" enctype="text/plain" id="form-fale-conosco" class="form-fale-conosco mt-5">
                 <div class="row">
                     <div class="col-lg-4 col-md-12 mb-5 nome_usuario_cad">
                         <label for="nome" class="form-label campo_obrigatorio">Nome Completo</label>
