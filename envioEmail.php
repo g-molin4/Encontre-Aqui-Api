@@ -30,6 +30,4 @@ function enviaEmail($mensagem,$destino,$nome,$contato){
     }
 }
 
-
-
 ?>

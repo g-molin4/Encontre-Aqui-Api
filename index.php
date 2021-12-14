@@ -6,7 +6,7 @@ if (!$pagina || $pagina == "principal")
 else if ($pagina == "login")
     include_once "login.php";
 else if ($pagina == "email")
-    include_once "mail/envioEmail.php";
+    include_once "envioEmail.php";
 else if ($pagina == "cadastro")
     include_once "cadastro-usuario.php";
 else if ($pagina == "validacao")

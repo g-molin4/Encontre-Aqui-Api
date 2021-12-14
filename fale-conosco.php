@@ -19,19 +19,20 @@
 	<body>
         <?php
         $nivelMinimo=0;
+        include "envioEmail.php";
         include_once "menu.php";
         ?>
 		<main class="container pt-5"  id="faleConosco">
             <h1>Fale Conosco</h1>
-            <form method="POST" action="mailto:encontreaquitcc@gmail.com" enctype="text/plain" id="form-fale-conosco" class="form-fale-conosco mt-5">
+            <form method="POST" action="email" enctype="text/plain" id="form-fale-conosco" class="form-fale-conosco mt-5">
                 <div class="row">
                     <div class="col-lg-4 col-md-12 mb-5 nome_usuario_cad">
-                        <label for="nome_usuario" class="form-label campo_obrigatorio">Nome Completo</label>
+                        <label for="nome" class="form-label campo_obrigatorio">Nome Completo</label>
                         <input
                             type="text"
                             class="form-control"
-                            id="nome_usuario"
-                            name="nomeUsuario"
+                            id="nome"
+                            name="nome"
                             placeholder="Digite o seu nome completo"
                             autofocus
                         />
@@ -52,10 +53,10 @@
                         <label for="telefoneCelular" class="form-label campo_obrigatorio">Telefone Celular</label>
                         <input
                             type="text"
-                            class="telefoneCelular form-control"
-                            id="telefoneCelular"
-                            name="telefoneCelular"
-                            maxlength="14"
+                            class="telefone form-control"
+                            id="telefone"
+                            name="telefone"
+                            maxlength="15"
                             placeholder="(00) 000000000"
                         />
                     </div>
@@ -64,7 +65,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 mb-5 objeto_cad">
                         <label for="objeto_encontrado" class="form-label campo_obrigatorio">Fale Aqui</label>
-                        <textarea name="descricao" id="descricao" class="form-control" cols="20" rows="5" placeholder="Descreva abaixo o conteúdo do que você quer falar conosco"></textarea>
+                        <textarea name="mensagem" id="mensagem" class="form-control" cols="20" rows="5" placeholder="Descreva abaixo o conteúdo do que você quer falar conosco"></textarea>
                     </div>
                 </div>
 
@@ -93,7 +94,7 @@
 		crossorigin="anonymous"></script>
 
         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
-        <script type="text/javascript" src="js/usuario.js"></script>
+        <script type="text/javascript" src="js/usuario2.js"></script>
         <script type="text/javascript" src="js/mask.js"></script>
 	</body>
 </html>
