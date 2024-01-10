@@ -20,7 +20,7 @@ function enviaEmail($mensagem,$destino,$nome,$telefone){
     $mail->Subject = 'Fale Conosco | Encontre Aqui';
     $mail->Body= 'Responder para: '.$destino.'<br>Nome: '.$nome. '<br>Contato:'.$telefone."<br>Mensagem: $mensagem" ;
     $mail->AltBody = 'EncontreAqui!';
-    $mail->addAddress('gabriel.mw3.gm@gmail.com');
+    $mail->addAddress('rayssagm_@hotmail.com');
 
     if(!$mail->send()) {
         echo 'Erro: ' . $mail->ErrorInfo;
